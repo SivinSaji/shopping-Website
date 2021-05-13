@@ -22,18 +22,18 @@ module.exports={
             if(user){
                 bcrypt.compare(userData.Password, user.Password).then((status)=>{
                     if(status){
-                        console.log("Login success")
+                       //console.log("Login success")
                         response.user = user
                         response.status= true
                         resolve(response)
                         
              }else{
-                        console.log("Login Faild")
+                        //console.log("Incorrect password")
                          resolve({status:false})
                     }
                 })
             }else{
-                console.log("Incorrect email")
+                 //console.log("Incorrect email")
                 resolve({status:false})
             }
         })
