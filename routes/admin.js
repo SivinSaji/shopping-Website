@@ -16,7 +16,7 @@ router.post('/add-product',(req,res)=>{
    productHelpers.addProduct(req.body,(id)=>{
   
     let image=req.files.Image
-    console.log(id)
+    //console.log(id)
     image.mv('./public/product-images/'+id+'.jpg',(err,done)=>{
       if(!err){
         res.render('admin/add-product')
@@ -35,4 +35,17 @@ router.get('/delete-product/:id',(req,res)=>{
   })
 
 })
+//Here we show the edit products in edit-product.hbs
+router.get('/edit-product/:id',async(req,res)=>{
+  let product=await productHelpers.getProductDetalis(req.params.id)
+  console.log(product)
+  res.render('admin/edit-product',{product})
+})
+router.post('/edit-product/:id',(req,res)=>{
+  console.log(req.params.id);
+  productHelpers.updateProduct(req.params.id,req.body).then(()=>{
+    res.redirect('/admin')
+  })
+})
 module.exports = router;
+

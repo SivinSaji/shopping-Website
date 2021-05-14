@@ -4,25 +4,26 @@
     <div class="row">
         <div class="col-md-6">
          
-            <h2 class="text-center">Add Product</h2>
-            <form action="/admin/add-product" class="ml-4" enctype="multipart/form-data"  method="POST">
+            <h2 class="text-center">Edit Product</h2>
+            <form action="/admin/edit-product/{{product._id}}" class="ml-4" enctype="multipart/form-data"  method="POST">
   <div class="form-group">
     <label for="formGroupExampleInput">Name</label>
-    <input type="text" name="Name" class="form-control">
+    <input type="text" name="Name" class="form-control" value="{{product.Name}}">
   </div>
   <div class="form-group">
     <label for="formGroupExampleInput2">Category</label>
-    <input type="text" name="Category" class="form-control">
+    <input type="text" name="Category" class="form-control" value="{{product.Category}}">
   </div>
   <div class="form-group">
     <label for="formGroupExampleInput2">Price</label>
-    <input type="text" name="Price" class="form-control">
+    <input type="text" name="Price" class="form-control" value="{{product.Price}}">
   </div>
   <div class="form-group">
     <label for="formGroupExampleInput2">Description</label>
-    <input type="text" name="Description" class="form-control">
+    <input type="text" name="Description" class="form-control" value="{{product.Description}}">
   </div>
   <div class="form-group">
+      <img src="/product-images/{{product._id}}.jpg" alt="Product Img loading" style="height: 100px; width:auto;">
     <label for="formGroupExampleInput2">Image</label>
     <input type="file" name="Image" class="form-control">
   </div>
