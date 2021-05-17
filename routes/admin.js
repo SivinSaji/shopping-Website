@@ -27,6 +27,8 @@ router.post('/add-product',(req,res)=>{
   res.render('admin/add-product')
   })
 })
+
+
 router.get('/delete-product/:id',(req,res)=>{
   let proId=req.params.id   //Here we pass the product id in url and in get method we can use it by params
   console.log(proId)
@@ -35,12 +37,15 @@ router.get('/delete-product/:id',(req,res)=>{
   })
 
 })
+
+
 //Here we show the edit products in edit-product.hbs
 router.get('/edit-product/:id',async(req,res)=>{
   let product=await productHelpers.getProductDetalis(req.params.id)
   console.log(product)
   res.render('admin/edit-product',{product})
 })
+
 router.post('/edit-product/:id',(req,res)=>{
   console.log(req.params.id);
   productHelpers.updateProduct(req.params.id,req.body).then(()=>{
