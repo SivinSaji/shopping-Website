@@ -155,5 +155,20 @@ module.exports={
          }
            
      })
-  }
+  },
+//This is the function used to remove cart product written by my self
+  removeCartProduct:(details)=>{
+    console.log(details);
+     return new Promise((resolve,reject)=>{
+       db.get().collection(collection.CART_COLLECTION)
+           .updateOne({_id:objectId(details.cart)},
+           {
+             $pull:{products:{item:objectId(details.product)}}
+
+           }
+           ).then((response)=>{
+             resolve({removeProduct:true})
+           })
+          })
+    }
 }

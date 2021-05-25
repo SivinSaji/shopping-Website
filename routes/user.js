@@ -82,4 +82,11 @@ router.get('/add-to-cart/:id',(req,res)=>{
       res.json(response)
     })
   })
+//This is the function used to remove cart product written by my self
+  router.post('/remove-cart-product',(req,res,next)=>{
+    console.log(req.body);
+    userHelpers.removeCartProduct(req.body).then((response)=>{                                  
+      res.json(response)
+    })
+  })
 module.exports = router;
