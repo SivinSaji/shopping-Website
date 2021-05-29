@@ -1,4 +1,5 @@
 var express = require('express');
+const { Logger } = require('mongodb');
 var router = express.Router();
 var productHelpers=require('../helpers/product-helpers')
 const userHelpers=require('../helpers/user-helpers')
@@ -113,6 +114,11 @@ router.get('/add-to-cart/:id',(req,res)=>{
   router.get('/orders',async(req,res)=>{
     let orders=await userHelpers.getUserOrders(req.session.user._id)
     res.render('user/orders',{user:req.session.user,orders})
+  })
+  router.get('/view-order-products/:id',async(req,res)=>{
+    let products=await userHelpers.getOrderProducts(req.params.id)
+    console.log(products)
+    res.render('user/view-order-products',{user:req.session.user,products})
   })
 module.exports = router;
  
