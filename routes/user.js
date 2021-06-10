@@ -22,9 +22,9 @@ router.get('/',async function(req, res, next) {
     res.render('user/view-products',{products,user,cartCount});       
   })
 });
-router.get("/login", function (req, res) {
+router.get("/login",function(req,res) {
   
-  if(req.session.loggedIn){
+  if(req.session.user){
     console.log(req.session.user)
     res.redirect('/')
   }else{
@@ -56,7 +56,7 @@ router.post('/login' ,(req,res)=>{
       res.redirect('/login')
     }
   })
-})
+ })
 router.get('/logout',(req,res)=>{
   req.session.user=null
   res.redirect('/')
