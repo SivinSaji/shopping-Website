@@ -1,3 +1,4 @@
+const { Router } = require('express');
 var express = require('express');
 var router = express.Router();
 var productHelpers=require('../helpers/product-helpers')
@@ -12,7 +13,7 @@ var productHelpers=require('../helpers/product-helpers')
 /* GET users listing. */
 router.get('/',verifyLogin,function(req, res, next) {
   let adminDetails=req.session.admin
-  console.log("##$$$$********"+adminDetails);
+  console.log(adminDetails);
   productHelpers.getAllProducts().then((products)=>{
     res.render('admin/view-products',{admin:true,products,adminDetails});       
   })
@@ -57,7 +58,7 @@ router.get("/login",function(req,res) {
 })
 router.post('/login',(req,res)=>{
   productHelpers.doLogin(req.body).then((response)=>{
-    console.log("4$$$$$$$"+response);
+    console.log(response);
     if(response.status){
       req.session.admin=response.admin
       req.session.adminLoggedIn=true
@@ -130,6 +131,20 @@ router.post('/edit-product/:id',(req,res)=>{
     let adminDetails=req.session.admin
     productHelpers.getAllusers().then((users)=>{
       res.render('admin/all-users',{admin:true,users,adminDetails});       
+    })
+  })
+
+  router.get('/remove-user/:id',(req,res)=>{
+    let userId=req.params.id
+    console.log(userId);
+    productHelpers.deleteUser(userId).then((response)=>{
+    res.redirect('/admin/all-users')
+    })
+  })
+
+  router.get('/remove-all-users',(req,res)=>{
+    productHelpers.deleteAllUsers().then((response)=>{
+      res.redirect('/admin/all-users')
     })
   })
 module.exports = router;

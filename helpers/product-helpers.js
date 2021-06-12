@@ -92,6 +92,23 @@ module.exports={
       let users=await db.get().collection(collection.USER_COLLECTION).find().toArray()
       resolve(users)
     })
+  },
+  deleteUser:(userId)=>{
+    console.log(userId);
+    return new Promise((resolve,reject)=>{
+      db.get().collection(collection.USER_COLLECTION).removeOne({_id:objectId(userId)}).then((response)=>{
+        
+        resolve(response)
+      })
+    })
+
+  },
+  deleteAllUsers:()=>{
+    return new Promise((resolve,reject)=>{
+    db.get().collection(collection.USER_COLLECTION).drop().then((response)=>{
+      resolve(response)
+    })
+  })
   }
 
 }
