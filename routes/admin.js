@@ -1,5 +1,6 @@
 const { Router } = require('express');
 var express = require('express');
+const { Db } = require('mongodb');
 var router = express.Router();
 var productHelpers=require('../helpers/product-helpers')
 //const userHelpers=require('../helpers/user-helpers')
@@ -109,7 +110,7 @@ router.get('/delete-product/:id',(req,res)=>{
 
 
 //Here we show the edit products in edit-product.hbs
-router.get('/edit-product/:id',verifyLogin,async(req,res)=>{
+router.get('/edit-product/:id',async(req,res)=>{
   let adminDetails=req.session.admin
   let product=await productHelpers.getProductDetalis(req.params.id)
   console.log(product)
@@ -147,5 +148,32 @@ router.post('/edit-product/:id',(req,res)=>{
       res.redirect('/admin/all-users')
     })
   })
+
+  router.get('/all-orders',async(req,res)=>{
+    let adminDetails=req.session.admin
+    let orders= await productHelpers.getAllOrders()
+    let users=await productHelpers.getAllusers()
+
+    console.log(users);
+    console.log(orders);
+      res.render('admin/all-orders',{orders,users,admin:true,adminDetails})
+  })
+
+  router.get('/view-ordered-products/:id',verifyLogin,async(req,res)=>{
+    let adminDetails=req.session.admin
+    let orderId=req.params.id;
+    console.log(orderId);
+    let orderItems=await productHelpers.getOrderedProducts(orderId)
+    res.render('admin/view-ordered-products',{orderItems,admin:true,adminDetails})
+    console.log(orderItems)
+  })
+
+  router.get('/change-status',(req,res)=>{
+    let status=req.query.status
+    let orderId=req.query.orderId
+    productHelpers.changeStatus(orderId,status)
+    res.redirect('/admin/all-orders')
+  })
 module.exports = router;
 
+    

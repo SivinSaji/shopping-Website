@@ -221,10 +221,11 @@ module.exports={
     },
     placeOrder:(order,products,total)=>{
       return new Promise((resolve,reject)=>{
-        console.log(order,products,total)
         let status=order['payment-method']==='COD'?'placed':'pending'  //Here use conditional operator
         let orderObj={
           deliveryDetails:{
+            name:order.name,
+            email:order.email,
             mobile:order.mobile,
             address:order.address,
             pincode:order.pincode
@@ -260,6 +261,7 @@ module.exports={
       })
     },
     getOrderProducts:(orderId)=>{
+      console.log("hey i am here"+orderId);
       return new Promise(async(resolve,reject)=>{ 
         let orderItems=await db.get().collection(collection.ORDER_COLLECTION).aggregate([
           {

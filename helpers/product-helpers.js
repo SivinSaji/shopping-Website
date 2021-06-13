@@ -1,7 +1,9 @@
 var db=require('../config/connection')
 var collection=require('../config/collections')
 const bcrypt = require("bcrypt");
-var objectId=require('mongodb').ObjectId
+var objectId=require('mongodb').ObjectId;
+const { response } = require('express');
+const { ObjectId } = require('bson');
 module.exports={
 
     addProduct:(product,callback)=>{
@@ -109,6 +111,58 @@ module.exports={
       resolve(response)
     })
   })
+  },
+  getAllOrders:()=>{
+    return new Promise((resolve,reject)=>{
+      let orders=db.get().collection(collection.ORDER_COLLECTION).find().toArray()
+      resolve(orders)
+    })
+  },
+  getOrderedProducts:(orderId)=>{
+    return new Promise(async(resolve,reject)=>{
+     let orderItems=await db.get().collection(collection.ORDER_COLLECTION).aggregate([
+       {
+         $match:{_id:objectId(orderId)}
+       },
+       {
+         $unwind:'$products'
+       },
+       {
+         $project:{
+           item:'$products.item',
+           quantity:'$products.quantity'
+         }
+       },
+       {
+         $lookup:{
+           from:collection.PRODUCT_COLLECTION,
+           localField:'item',
+           foreignField:'_id',
+           as:'product'
+         }
+       },
+       {
+         $project:{
+           item:1,quantity:1,product:{$arrayElemAt:['$product',0]}
+         }
+       }
+     ]).toArray()
+     console.log(orderItems);
+
+        resolve(orderItems)
+      
+    })
+  },
+  changeStatus:(orderId,status)=>{
+    return new Promise((resolve,reject)=>{
+       db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:ObjectId(orderId)},{
+         $set:{
+           status:status
+         }
+       }).then((response)=>{
+         resolve()
+       })
+    })
   }
 
 }
