@@ -33,15 +33,26 @@ router.get("/login",function(req,res) {
   }
 })
 router.get("/signup", function (req, res) {
+  if(req.session.user){
   res.render("user/signup");  
+  }else{
+    res.render('user/signup',{"usersignUpErr":req.session.usersignUpErr})
+     req.session.usersignUpErr=false
+  }
 })
 router.post("/signup", function (req, res) {
   
   userHelpers.doSignup(req.body).then((response) => {
-    console.log(response)
+//console.log(req.body);
+    //console.log(response)
+    if(response.status==false){
+      req.session.usersignUpErr="Email already exist"
+      res.redirect('/signup')
+    }else{
     req.session.user=response
     req.session.userLoggedIn=true 
     res.redirect('/')
+    }
   })
 })
 router.post('/login' ,(req,res)=>{

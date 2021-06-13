@@ -12,6 +12,12 @@ var instance = new Razorpay({
 module.exports={
     doSignup: (userData) => {  //here userData is req.body which is passed from user.js
         return new Promise(async (resolve, reject) => {
+         
+          let emailExisit=await db.get().collection(collection.USER_COLLECTION).findOne({Email:userData.Email})
+          if(emailExisit){
+            resolve({status:false})
+          }
+          else{
           userData.Password = await bcrypt.hash(userData.Password, 10);
           db.get()
             .collection(collection.USER_COLLECTION)
@@ -19,7 +25,9 @@ module.exports={
             .then((data) => {
               resolve(data.ops[0]);
             });
+          }
         });
+      
       },
       doLogin : (userData) => {              //here userData is re.body which is passed from user.js
         return new Promise(async(resolve, reject) => {

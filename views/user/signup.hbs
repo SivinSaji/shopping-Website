@@ -3,6 +3,9 @@
         <div class="col-md-6">
             <h2>Create Account</h2>
             <form action="/signup" method="post">
+            {{#if usersignUpErr}}
+            <p class="error">{{usersignUpErr}}</p>
+            {{/if}}
                 <label for="name">Name</label>
                 <input type="text" name="Name" placeholder="Name" class="form-control">
                 <label for="email">Email</label>

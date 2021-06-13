@@ -34,7 +34,7 @@ router.get("/signup", function (req, res) {
 router.post("/signup", function (req, res) {
   
   productHelpers.doSignup(req.body).then((response) => {
-    console.log(response);
+    console.log(req.body);
     if (response.status == false) {
       req.session.signUpErr = "Invalid Admin Code";
       res.redirect("/admin/signup");

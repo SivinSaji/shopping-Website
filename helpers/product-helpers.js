@@ -51,9 +51,11 @@ module.exports={
     },
     doSignup: (adminData) => {  //here userData is req.body which is passed from user.js
       return new Promise(async (resolve, reject) => {
-       // bcrypt.compare(adminData.Password,"$2b$10$xD/XN0eDxmDads.spe0zIusN..zWz1fbsDAhevLZpRxt8YrQOvzkW").then((status)=>{
-        if (adminData.Code == "admin123") {
-          adminData.Password = await bcrypt.hash(adminData.Password, 10);
+        console.log(adminData);
+       // adminkey="$2b$10$xD/XN0eDxmDads.spe0zIusN..zWz1fbsDAhevLZpRxt8YrQOvzkW";
+      // bcrypt.compare(adminData.Password,).then((status)=>{
+        if (adminData.Code==="admin123") {
+         // adminData.Password = await bcrypt.hash(adminData.Password, 10);
           db.get()
             .collection(collection.ADMIN_COLLECTION)
             .insertOne(adminData)
