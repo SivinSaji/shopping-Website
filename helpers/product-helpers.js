@@ -51,9 +51,16 @@ module.exports={
     },
     doSignup: (adminData) => {  //here userData is req.body which is passed from user.js
       return new Promise(async (resolve, reject) => {
-        console.log(adminData);
+        let emailExist=await db.get().collection(collection.ADMIN_COLLECTION).findOne({Email:adminData.Email})
+        //console.log(adminData);
        // adminkey="$2b$10$xD/XN0eDxmDads.spe0zIusN..zWz1fbsDAhevLZpRxt8YrQOvzkW";
       // bcrypt.compare(adminData.Password,).then((status)=>{
+        console.log(emailExist);
+        if(emailExist){
+          resolve({ status:true});
+        }else{
+          
+        
         if (adminData.Code==="admin123") {
          // adminData.Password = await bcrypt.hash(adminData.Password, 10);
           db.get()
@@ -65,6 +72,7 @@ module.exports={
         } else {
           resolve({ status: false });
         }
+      }
       });
     },
     doLogin : (adminData) => {              //here userData is re.body which is passed from user.js

@@ -22,25 +22,30 @@ router.get('/',verifyLogin,function(req, res, next) {
 });
 
 router.get("/signup", function (req, res) {
+  
+  //console.log(adminDetails);
   if (req.session.adminLoggedIn) {
     res.redirect("/admin");
   } else {
-    res.render("admin/signup", {
-      admin: true,
-      signUpErr: req.session.signUpErr,
-    }); 
+    let adminDetails=req.session.admin
+    res.render("admin/signup", {admin: true,signUpErr: req.session.signUpErr ,adminDetails}); 
+    req.session.signUpErr=false
   }
 })
-router.post("/signup", function (req, res) {
-  
+
+router.post("/signup", function (req, res) { 
   productHelpers.doSignup(req.body).then((response) => {
-    console.log(req.body);
+    //console.log(req.body);
     if (response.status == false) {
       req.session.signUpErr = "Invalid Admin Code";
       res.redirect("/admin/signup");
-    } else {
+    }else if(response.status==true){
+        req.session.signUpErr = "Email Id already exist";
+        res.redirect("/admin/signup");
+      }
+    else {
+      req.session.admin = response;
       req.session.adminLoggedIn = true;
-      req.session.admin = response.admin;
       res.redirect("/admin");
     }
   });

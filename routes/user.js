@@ -46,7 +46,7 @@ router.post("/signup", function (req, res) {
 //console.log(req.body);
     //console.log(response)
     if(response.status==false){
-      req.session.usersignUpErr="Email already exist"
+      req.session.usersignUpErr="Email Id already exist"
       res.redirect('/signup')
     }else{
     req.session.user=response
