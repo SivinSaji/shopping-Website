@@ -8,17 +8,39 @@ module.exports={
 
     addProduct:(product,callback)=>{
     product.Price=parseInt(product.Price)
+    product.category = objectId(product.category)
     db.get().collection('product').insertOne(product).then((data)=>{
         callback(data.ops[0]._id)
       
     })
     },
-    getAllProducts:()=>{
+   getAllProducts:()=>{
       return new Promise(async(resolve,rejct)=>{
         let products=await db.get().collection(collection.PRODUCT_COLLECTION).find().toArray()
         resolve(products)
+        console.log(products);
       })
     },
+     
+    viewAllProducts:async()=>{
+      return new Promise (async(resolve,reject)=>{
+     let categories= await db.get().collection(collection.CATEGORY_COLLECTION).aggregate([
+       {
+         $lookup:{
+           from:collection.PRODUCT_COLLECTION,
+           localField:'_id',
+           foreignField:'category',
+           as:'product'
+
+         }
+
+       },
+     ]).toArray()
+     resolve(categories)
+    })
+    
+    },
+
     deleteProduct:(prodId)=>{  
          return new Promise((resolve,reject)=>{
            db.get().collection(collection.PRODUCT_COLLECTION).removeOne({_id:objectId(prodId)}).then((response)=>{
@@ -59,9 +81,10 @@ module.exports={
         if(emailExist){
           resolve({ status:true});
         }else{
-          
+          adminData.Password = await bcrypt.hash(adminData.Password, 10);
         
         if (adminData.Code==="admin123") {
+          adminData.Code= await bcrypt.hash(adminData.Code, 10);
          // adminData.Password = await bcrypt.hash(adminData.Password, 10);
           db.get()
             .collection(collection.ADMIN_COLLECTION)
@@ -173,6 +196,51 @@ module.exports={
          resolve()
        })
     })
-  }
+  },
+  addNewCategory:(Category)=>{
+    return new Promise((resolve,reject)=>{
+    db.get().collection(collection.CATEGORY_COLLECTION).insertOne(Category).then((data)=>{
+    resolve(data.ops[0]._id)
+    console.log("^^^^^^^^^^^^^^^^^^")
+    console.log(data.ops[0]._id);
+})
+    })
+ },
+   getAllCategory:()=>{
+     return new Promise((resolve,reject)=>{
+     let category=db.get().collection(collection.CATEGORY_COLLECTION).find().toArray()
+     resolve(category)
+    })
+   },
+   CategoryDetails:(Id)=>{
+     return new Promise((resolve,reject)=>{
+    let category=  db.get().collection(collection.CATEGORY_COLLECTION).findOne({_id:objectId(Id)})
+    resolve(category)
+     })
+   },
+
+   editCategory:(categoryData,categoryId)=>{
+     return new Promise(async(resolve,rejct)=>{
+     await  db.get().collection(collection.CATEGORY_COLLECTION).updateOne({_id:ObjectId(categoryId)},{
+         $set:{
+           name:categoryData.name,
+           displayName:categoryData.displayName
+
+         }
+       }).then((response)=>{
+         resolve()
+       })
+     })
+   },
+
+   deleteCategory:(Id)=>{
+     console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
+     console.log(Id);
+     return new Promise((resolve,reject)=>{
+       db.get().collection(collection.CATEGORY_COLLECTION).removeOne({_id:ObjectId(Id)}).then((response)=>{
+         resolve()
+       })
+     })
+   }
 
 }

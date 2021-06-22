@@ -1,0 +1,39 @@
+<section>
+
+    <div class="container mt-4"></div>
+    <div class="row">
+        <div class="col-md-6">
+         
+            <h2 class="text-center">Add Category</h2>
+            <form action="/admin/add-category" class="ml-4" enctype="multipart/form-data"  method="POST">
+  <div class="form-group">
+    <label for="formGroupExampleInput">Name</label>
+    <input type="text" name="name" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Display Name</label>
+    <input type="text" name="displayName" class="form-control">
+  </div>
+ 
+ <div class="form-group">
+                <label for="image">Image</label>
+                <img src="" alt="" style="width:100px;height:100px;" id="imgView" class="pb-1">
+                <div class="custom-file mt-2">
+                <input type="file" name="image" class="custom-file-input" id="customFile" onchange="viewImage(event)">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+  
+    <button type="submit" class='btn btn-success mt-2'>submit</button>
+  
+</form>
+</center>
+        </div>
+    </div>
+    
+</section>
+
+<script>
+  function viewImage(event){
+    document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])
+  }
+</script>

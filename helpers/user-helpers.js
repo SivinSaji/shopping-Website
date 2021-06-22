@@ -10,9 +10,31 @@ var instance = new Razorpay({
   key_secret: 'K7I3i0AcxCK5juJShckxdlgK',
 });
 module.exports={
+  viewAllProducts:()=>{
+    return new Promise (async(resolve,reject)=>{
+   let categories=await db.get().collection(collection.CATEGORY_COLLECTION).aggregate([
+     {
+       $lookup:
+       {
+         from:collection.PRODUCT_COLLECTION,
+         localField:'_id',
+         foreignField:'Category',
+         as:'products'
+       }
+
+     },
+   ]).toArray()
+   console.log('$$$$$$$$');
+   console.log(categories);
+   resolve(categories)
+  })
+  },
+  
+
     doSignup: (userData) => {  //here userData is req.body which is passed from user.js
         return new Promise(async (resolve, reject) => {
-
+        let password=userData.Password
+        console.log("User ##### password  "+password);
           let emailExisit=await db.get().collection(collection.USER_COLLECTION).findOne({Email:userData.Email})
           if(emailExisit){
             resolve({status:false})

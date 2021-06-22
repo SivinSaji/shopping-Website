@@ -18,10 +18,21 @@ router.get('/',async function(req, res, next) {
   if(req.session.user){
   cartCount=await userHelpers.getCartCount(req.session.user._id)
   }
-  productHelpers.getAllProducts().then((products)=>{
-    res.render('user/view-products',{products,user,cartCount});       
+  
+  productHelpers.viewAllProducts().then((categories)=>{
+    console.log('$$$$$$$$');
+    console.log(categories);   
+    console.log(categories.product);  
+    for(i=0;i<categories.length;i++){
+      if(categories[i].product.length===0){
+        delete categories[i]
+      }
+    }
+    res.render('user/view-products',{categories,user,cartCount});    
+   
   })
 });
+
 router.get("/login",function(req,res) {
   
   if(req.session.user){

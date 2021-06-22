@@ -12,11 +12,15 @@ var productHelpers=require('../helpers/product-helpers')
     }
   }
 /* GET users listing. */
-router.get('/',verifyLogin,function(req, res, next) {
+router.get('/',verifyLogin, async function(req, res, next) {
   let adminDetails=req.session.admin
   console.log(adminDetails);
-  productHelpers.getAllProducts().then((products)=>{
-    res.render('admin/view-products',{admin:true,products,adminDetails});       
+  let products= await productHelpers.getAllProducts()
+  productHelpers.viewAllProducts().then((categories)=>{
+  
+    console.log('$$$$$$$$$$$$');
+    console.log(products);
+    res.render('admin/view-products',{admin:true,categories,products,adminDetails});       
   })
  
 });
@@ -83,23 +87,33 @@ router.get('/logout',(req,res)=>{
 })
 
 
-router.get('/add-product',function(req,res){
+router.get('/add-product',function (req,res){
   let adminDetails=req.session.admin
-  res.render('admin/add-product',{admin:true,adminDetails})
+  productHelpers.getAllCategory().then((category)=>{
+    console.log("$$$$$");
+    console.log(category);
+  res.render('admin/add-product',{admin:true,adminDetails,category})
 })
-router.post('/add-product',verifyLogin,(req,res)=>{
-   productHelpers.addProduct(req.body,(id)=>{
-  
+})
+
+
+router.post('/add-product',verifyLogin ,(req,res)=>{
+   productHelpers.addProduct(req.body,async(id)=>{
+    let adminDetails=req.session.admin
+    let category=await productHelpers.getAllCategory()
     let image=req.files.Image
-    //console.log(id)
+    
+    console.log(id)
     image.mv('./public/product-images/'+id+'.jpg',(err,done)=>{
       if(!err){
-        res.render('admin/add-product')
+        console.log("%%%%%%%%%");
+        console.log(category);
+        console.log(adminDetails);
+        res.render('admin/add-product',{admin:true,adminDetails,category})
       }else{
         console.log(err);
       }
     })
-  res.render('admin/add-product')
   })
 })
 
@@ -179,6 +193,60 @@ router.post('/edit-product/:id',(req,res)=>{
     productHelpers.changeStatus(orderId,status)
     res.redirect('/admin/all-orders')
   })
-module.exports = router;
+router.get('/all-categories',async(req,res)=>{
+  let adminDetails=req.session.admin
+  let categories=await productHelpers.getAllCategory()
+  res.render('admin/all-categories',{admin:true,adminDetails,categories})
+})
+
+router.get('/add-category',(req,res)=>{
+  let adminDetails=req.session.admin
+  res.render('admin/add-category',{admin:true,adminDetails})
+})
+
+
+
+  router.post('/add-category',function(req,res){
+    productHelpers.addNewCategory(req.body).then((id)=>{
+    let image=req.files.image
+     console.log(id);
+     image.mv('./public/category-images/'+id+'.jpg',function(err,done){
+      if(!err){
+        res.redirect('/admin/add-category')
+      }else{
+        console.log(err);
+      }
+    })
+
+   })
+ }),
+ router.get('/edit-category/:id',async(req,res)=>{
+  let categoryId=req.params.id;
+  let category=await productHelpers.CategoryDetails(categoryId)
+  res.render('admin/edit-category',{category})
+  console.log("%%%%%%%%%%%");
+  console.log(category);
+ })
+router.post('/edit-category/:id',(req,res)=>{
+  console.log('$$$$$$$$$$$$');
+  console.log(req.body);
+  productHelpers.editCategory(req.body,req.params.id).then(()=>{
+    res.redirect('/admin/all-categories')
+    let id=req.params.id
+    let image=req.files.Image
+    console.log(id)
+    image.mv('./public/category-images/'+id+'.jpg')
+  })
+
+}),
+
+router.get('/delete-category/:id',(req,res)=>{
+  console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
+     console.log(req.params.id);
+  productHelpers.deleteCategory(req.params.id).then(()=>{
+    res.redirect('/admin/all-categories')
+  })
+})
+ module.exports = router;
 
     

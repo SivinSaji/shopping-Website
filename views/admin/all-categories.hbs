@@ -1,0 +1,34 @@
+<section>
+    <div class="container mt-5">
+        <div>
+            <a href="/admin/add-category" class="btn btn-primary float-end mb-1">Add Category</a>
+        </div>
+        <div class="table-responsive-md mt-2">
+            <table class="table responsive">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Display Name</th>
+                        <th scope="col">Image</th>
+                         <th scope="col">Edit</th>
+                        <th scope="col">Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each categories}}
+                    <tr class="align-middle">
+                        <th scope="row">{{@index}}</th>
+                        <td>{{this.name}}</td>
+                        <td>{{this.displayName}}</td>
+                         <td><img src="/category-images/{{this._id}}.jpg" alt="" style="width: 50px; height: 50px;"></td>
+                         <td><a href="/admin/edit-category/{{this._id}}" class="btn btn-primary">Edit</a></td>
+                        <td><a href="/admin/delete-category/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are You Sure to Delete {{this.name}}?. It also delete all the products in {{this.name}} category')">Remove</a></td>
+                        
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
