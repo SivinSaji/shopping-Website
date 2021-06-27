@@ -1,4 +1,4 @@
-<section>
+<section style="padding: 10px;">
    <!--Slide Images-->
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -8,14 +8,14 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" style="height: 350px; width: 100%;" src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX45634096.jpg" alt="First slide">
+      <img class="d-block w-100" style="height: 11rem; width: 100%;" src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX45634096.jpg" alt="First slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" style="height: 350px; width: 100%;" src="/slide-images/01_21st_Pantry-pc1x._CB666446734_.jpg" alt="Second slide">
+      <img class="d-block w-100" style="height: 11rem; width: 100%;" src="/slide-images/01_21st_Pantry-pc1x._CB666446734_.jpg" alt="Second slide">
     </div>
     
         <div class="carousel-item">
-      <img class="d-block " style="height: 350px; width: 100%;" src="/slide-images/240_F_383218115_jOpAGds2lc9Iia0hjwm0Zw5o2FeHGKqq.jpg" alt="Third slide">
+      <img class="d-block " style="height: 11rem; width: 100%;" src="/slide-images/240_F_383218115_jOpAGds2lc9Iia0hjwm0Zw5o2FeHGKqq.jpg" alt="Third slide">
     </div>      
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -32,7 +32,7 @@
 
 <section>
 <!--Category Display-->
-      <h4>Category</h4>
+      <h5><b style="padding-left: 12px; color: #696969;">Category</b></h5>
    <div class="container-fluid mt-3">
       <div class="row scrollmenu">
          <div class="col-md-12">
@@ -54,7 +54,7 @@
    <!--Product Display-->
    <div class="container-fluid mt-3">
       {{#each categories}}
-      <h5>{{this.displayName}}</h5>
+      <h5><b style="color: #696969;">{{this.displayName}}</b></h5>
       <div class="row">
          {{#each product}}
          <div class="col-6 col-md-2 pb-4">

@@ -83,7 +83,7 @@ module.exports={
         }else{
           adminData.Password = await bcrypt.hash(adminData.Password, 10);
         
-        if (adminData.Code==="admin123") {
+        if (adminData.Code==="sivin123") {
           adminData.Code= await bcrypt.hash(adminData.Code, 10);
          // adminData.Password = await bcrypt.hash(adminData.Password, 10);
           db.get()
