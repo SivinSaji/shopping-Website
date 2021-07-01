@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="container mt-5 ml-5 checkout">
+                    <div class="container mt-5 ml-auto checkout">
                         <h5>Total Amount: Rs.{{total}}</h5>
                         <hr>
                         <div class="payment">
@@ -77,7 +77,6 @@
                 //alert(response.razorpay_payment_id);
                 //alert(response.razorpay_order_id);
                 //alert(response.razorpay_signature)
-
                 verifyPayment(response,order)
             },
             "prefill": {
@@ -118,18 +117,15 @@
         width: 20px;
         height: 20px;
     }
-
     label.radio-inline {
         display: flex;
         align-items: center;
     }
-
     .checkout {
         border: 1px solid;
         border-radius: 3px;
         padding: 30px;
     }
-
     .payment {
         padding-bottom: 16px;
     }
