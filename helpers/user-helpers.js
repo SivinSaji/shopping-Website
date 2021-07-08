@@ -252,6 +252,15 @@ module.exports={
     placeOrder:(order,products,total)=>{
       return new Promise((resolve,reject)=>{
         let status=order['payment-method']==='COD'?'placed':'pending'  //Here use conditional operator
+       let  date= new Date()
+        console.log(date.toLocaleString('en-US', {
+        weekday: 'short', // "Sat"
+        month: 'long', // "June"
+        day: '2-digit', // "01"
+        year: 'numeric' // "2019"
+        }))
+        console.log(date.toDateString())
+        console.log(date.toLocaleTimeString())
         let orderObj={
           deliveryDetails:{
             name:order.name,
@@ -265,7 +274,9 @@ module.exports={
           products:products,
           totalAmount:total,
           status:status,
-          date:new Date()
+         date:date.toDateString()+' Time: '+date.toLocaleTimeString()
+         
+
         }
         db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response)=>{
           db.get().collection(collection.CART_COLLECTION).removeOne({user:objectId(order.userId)})
