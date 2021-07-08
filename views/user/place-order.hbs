@@ -6,19 +6,21 @@
                     <h2>Enter Delivery Details</h2><br>
                     <div>
                           <label for="">Name</label>
-                        <input type="text" class="form-control" id="name" value="{{user.Name}}" name="name">
+                        <input type="text" class="form-control" placeholder="Name" id="name" value="{{user.Name}}" name="name"><br>
 
-                          <label for="">Email</label>
-                        <input type="text" class="form-control" id="email" value="{{user.Email}}" name="email">
+                       
 
-                        <label for="">Address</label>
-                        <input type="text" class="form-control" id="address" name="address">
+                        
+                       <div class="form-group">
+    <label for="exampleFormControlTextarea1">Address</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Address" rows="3" name="address"></textarea>
+  </div>
 
                         <label for="">Pincode</label>
-                        <input type="text" class="form-control" id="pincode" name="pincode">
+                        <input type="text" class="form-control" id="pincode" placeholder="Pincode" name="pincode">
 
                         <label for="">Mobile</label>
-                        <input type="text" class="form-control" name="mobile" id="mobile">
+                        <input type="text" class="form-control" name="mobile" placeholder="Mobile number" id="mobile">
 
                         <input type="text" name="userId" id="" value="{{user._id}}" hidden>
 

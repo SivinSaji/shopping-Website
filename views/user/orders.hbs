@@ -1,38 +1,49 @@
+
+
+
 <section>
-    <div class="container-fluid">
-    <div class="row mt-4">
-    </div>
-        <table class="table mt-5">
-  <thead>
-    <tr>
-      <th scope="col">Date</th>
-      <th scope="col">Address</th>
-      <th scope="col">Pincode</th>
-      <th scope="col">Mobile</th>
-      <th scope="col">Amount</th>
-      <th scope="col">Payment</th>
-      <th scope="col">Status</th>
-    </tr>
-  </thead>
-  <tbody>
-             
-        {{#each orders}}
-        <tr>
-      <th scope="row">{{this.date}}</th>
-      <td>{{this.deliveryDetails.address}}</td>
-      <td>{{this.deliveryDetails.pincode}}</td>
-      <td>{{this.deliveryDetails.mobile}}</td>
-      <td>{{this.totalAmount}}</td>
-      <td>{{this.paymentMethod}}</td>
-      <td>{{this.status}}</td>
-      <td>
-        <a href="/view-order-products/{{this._id}}" class="btn btn-primary">View Products</a>
-      </td>
-      </tr>                                                                    
-      {{/each}}
-    
-    
-  </tbody>
-</table>
-    </div>
+  <h4 style="padding:1%; color: #696969;">Orders</h4>
+  {{#each orders}}
+   <div class="container-fluid">
+      <div class="row">
+        
+         <div class="col-md-6 mt-3">
+            <h5>Shipping Address</h5>
+            <div class="border rounded p-2">
+              
+               <span class="font-weight-bold">{{this.deliveryDetails.name}}</span><br>
+               
+               <span>{{this.deliveryDetails.address}}</span><br>
+               <span>{{this.deliveryDetails.pincode}}<span><br>
+               <span>Mob: {{this.deliveryDetails.mobile}}<span>
+                 
+            </div>
+            
+         </div>
+         
+      </div>
+      <div class="row mt-3">
+         <div class="col-md-6">
+            
+            <h5>Status: {{this.status}}<small class="text-muted ml-2">{{order.currentStatusDate}}</small></h5>
+          
+         </div>
+      </div>
+     
+       <a href="/view-order-products/{{this._id}}" class="btn btn-primary">View Products</a>
+      
+      <div class="row mt-3">
+         <div class="col-7 col-md-10">
+            <h5 class="pl-3">Total Amount:</h5>
+         </div>
+         <div class="col-5 col-md-2 text-center align-items-center">
+            <h5>₹<span id="total">{{this.totalAmount}}</span><h5>
+         </div>
+      </div>
+   </div>
+   <hr>
+   {{/each}}
 </section>
+
+
+
