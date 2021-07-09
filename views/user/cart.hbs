@@ -33,7 +33,7 @@
                           <button class="cart-item-count" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',1)">+</button>
                     </td>-->
                     <td style="width: 10%;">
-                       <button class="btn btn-danger mt-3"  onclick="removeProduct('{{this._id}}','{{this.product._id}}')">Remove</button> 
+                       <button class="btn btn-danger mt-3"  onclick="removeProduct('{{this._id}}','{{this.product._id}}')"><small>Remove</small></button> 
                     </td>
                 </tr>
                 {{/each}}
@@ -94,7 +94,9 @@
             }
         })
     }
+   
 </script>
+
 <style>
 .cart-item-count{
  border-radius: 6px;
