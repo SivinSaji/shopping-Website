@@ -27,10 +27,8 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-</section>
 
-
-<section>
+     
 <!--Category Display-->
       <h5><b style="padding-left: 12px; color: #696969;">Category</b></h5>
    <div class="container-fluid mt-3">
@@ -54,26 +52,27 @@
    <!--Product Display-->
    <div class="container-fluid mt-3">
       {{#each categories}}
-      <h5><b style="color: #696969;">{{this.displayName}}</b></h5>
+      <h5 class="limit-line-length">{{this.displayName}}</h5>
       <div class="row">
          {{#each product}}
          <div class="col-6 col-md-2 pb-4">
-           
+            <a href="/product-page/{{this._id}}" style="text-decoration:none; color:black;">
             <div class="card align-items-center text-center">
-               <img class="mt-3" src="/product-images/{{this._id}}.jpg" alt="{{this.name}}" style="height:5rem; width:5rem;">
+               <img class="mt-3" src="/product-images/{{this._id}}.jpg" style="height:6rem; width:6rem;">
                <div class="card-body">
-                  <h6 class="card-title" style="height:2em;">{{this.Name}}</h6>
-                  <h6 class="card-text text-success">₹{{this.Price}}</h6>
-              
-                 
-                  <button class="btn btn-primary mt-2" onclick="addToCart('{{this._id}}')" style="width:7em;height:auto">Add to Cart</button>
-                  
-                  
-               </div>
+                  <div style="height:2.7em; width:7em;">
+                     <h6 class="card-title product-title">{{this.Name}}</h6>
+                  </div>
+                  <h6 class="card-text text-success limit-line-length" style="max-width:7em;">{{this.Price}}</h6>
+               <!--  <p class="card-text">{{this.description}}</p> -->
+             </a>
+                 <button class="btn btn-primary mt-2" onclick="addToCart('{{this._id}}')" style="width:7em;height:auto">Add to Cart</button>
+             </div>
             </div>
          </div>
          {{/each}}
       </div>
       {{/each}}
    </div>
+    
 </section>

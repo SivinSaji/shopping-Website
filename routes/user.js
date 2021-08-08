@@ -3,6 +3,7 @@ const { Logger } = require('mongodb');
 var router = express.Router();
 var productHelpers=require('../helpers/product-helpers')
 const userHelpers=require('../helpers/user-helpers')
+var collection=require('../config/collections')
 const verifyLogin=(req,res,next)=>{
   if(req.session.userLoggedIn){
     next()
@@ -84,7 +85,7 @@ router.get('/logout',(req,res)=>{
   req.session.userLoggedIn=false
   res.redirect('/')
 })
-router.get('/cart',verifyLogin,async(req,res)=>{
+router.get('/cart',verifyLogin ,async(req,res,next)=>{
   let products=await userHelpers.getCartProducts(req.session.user._id)
   let totalValue=0
   if(products.length>0){
@@ -97,9 +98,16 @@ router.get('/cart',verifyLogin,async(req,res)=>{
 
 router.get('/add-to-cart/:id',(req,res)=>{
   console.log("api call");
+  if(req.session.userLoggedIn)
+  {
   userHelpers.addToCart(req.params.id,req.session.user._id).then(()=>{
    res.json({status:true})
   })
+  }
+  else{
+    res.json({status:false})
+  }
+ 
   })
 
   router.post('/change-product-quantity',(req,res,next)=>{
@@ -163,5 +171,50 @@ router.get('/add-to-cart/:id',(req,res)=>{
       res.json({status:false,errMsg:''})
     })
   })
+/*Search products */
+
+router.post('/search-products', function(req, res, next) {
+  searchValue=req.body.searchValue;
+  productHelpers.searchProduct(req.body.searchValue).then(async(products) => {
+    searchResultLength=await products.length
+    if(req.session.user){
+      let user=req.session.user
+    cartCount=await userHelpers.getCartCount(req.session.user._id)
+    res.render('user/search-product', {products,searchValue,searchResultLength,cartCount,user})
+    }
+    else{
+      res.render('user/search-product', {products,searchValue,searchResultLength})
+    }
+     
+  })
+})
+
+
+/*Search products Start */
+
+router.get('/search', function (req, res, next) {
+	var q = req.query.q;
+  console.log(q);
+  productHelpers.searchProduct(q).then(async(data) => {
+    console.log(data);
+    res.json(data);
+  })
+});
+/*Search products End*/
+
+
+/*Product page*/
+router.get('/product-page/:id', async(req,res)=>{
+  let product=await productHelpers.getSelectedProduct(req.params.id)
+  if(req.session.user){
+    let user=req.session.user
+  cartCount=await userHelpers.getCartCount(req.session.user._id)
+  res.render('user/product-page',{product,user:req.session.user,cartCount,user})
+  }
+  else{
+    res.render('user/product-page',{product,user:req.session.user})
+  }
+
+})
 module.exports = router;
  

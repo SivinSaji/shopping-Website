@@ -17,8 +17,6 @@ router.get('/',verifyLogin, async function(req, res, next) {
   console.log(adminDetails);
   let products= await productHelpers.getAllProducts()
   productHelpers.viewAllProducts().then((categories)=>{
-  
-    console.log('$$$$$$$$$$$$');
     console.log(products);
     res.render('admin/view-products',{admin:true,categories,products,adminDetails});       
   })
@@ -26,8 +24,6 @@ router.get('/',verifyLogin, async function(req, res, next) {
 });
 
 router.get("/signup", function (req, res) {
-  
-  //console.log(adminDetails);
   if (req.session.adminLoggedIn) {
     res.redirect("/admin");
   } else {
@@ -241,7 +237,6 @@ router.post('/edit-category/:id',(req,res)=>{
 }),
 
 router.get('/delete-category/:id',(req,res)=>{
-  console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
      console.log(req.params.id);
   productHelpers.deleteCategory(req.params.id).then(()=>{
     res.redirect('/admin/all-categories')

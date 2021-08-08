@@ -241,6 +241,50 @@ module.exports={
          resolve()
        })
      })
-   }
+   },
+   searchProduct:function(search) {
+    return new Promise(async(resolve, reject) => {
+       let searchResult = await db.get().collection(collection.PRODUCT_COLLECTION).aggregate([
+          {
+             $lookup:
+             {
+                from:collection.CATEGORY_COLLECTION,
+                localField:'category', 
+                foreignField:'_id',
+                as:'category'
+             }
+          },
+          {
+             $project:
+             {
+                Name:1, category:{$arrayElemAt:['$category',0]},Price:1, Description:1
+             }
+          },
+          {
+             $project:
+             {
+                Name:1, category:'$category.name',Price:1, Description:1
+             }
+          },
+          {
+             $match:
+             {
+                $or:[
+                   {Name:{'$regex' : search, '$options' : 'i'}},
+                   {category:{'$regex' : search, '$options' : 'i'}},
+                ]
+             }
+          }
+       ]).toArray()
+       resolve(searchResult)
+    })
+
+},
+getSelectedProduct:(productId)=>{
+  return new Promise(async(resolve,reject)=>{
+    let product=await db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id:objectId(productId)})
+    resolve(product)
+  })
+}
 
 }
