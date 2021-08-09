@@ -1,7 +1,6 @@
 
-
-
-<section>
+ {{#if orders}}
+    <section>
   <h4 style="padding:1%; color: #696969;">Orders</h4>
   {{#each orders}}
    <div class="container-fluid">
@@ -44,6 +43,19 @@
    <hr>
    {{/each}}
 </section>
+      {{else}}
+      <section>
+   <div class="container mt-3">
+      <div class="row">
+         <div class="col-md-12 text-center">
+            <h5>You have no Orders</h5>
+            <a href="/" class="btn btn-primary btn-sm">Go Shopping</a>
+         </div>
+      </div>
+   </div>
+</section>
+    {{/if}}   
+
 
 
 

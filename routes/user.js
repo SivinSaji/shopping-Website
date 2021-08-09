@@ -146,12 +146,14 @@ router.get('/add-to-cart/:id',(req,res)=>{
     console.log(req.body)
   })
 
-  router.get('/order-success',(req,res)=>{
-    res.render('user/order-success',{user:req.session.user})
+  router.get('/order-success',verifyLogin,async(req,res)=>{
+     res.render('user/order-success',{user:req.session.user})
+  
   })
   router.get('/orders',async(req,res)=>{
+    let cartCount=await userHelpers.getCartCount(req.session.user._id)
     let orders=await userHelpers.getUserOrders(req.session.user._id)
-    res.render('user/orders',{user:req.session.user,orders})
+    res.render('user/orders',{user:req.session.user,orders,cartCount})
   })
   router.get('/view-order-products/:id',async(req,res)=>{
     let products=await userHelpers.getOrderProducts(req.params.id)

@@ -6,21 +6,21 @@
                     <h2>Enter Delivery Details</h2><br>
                     <div>
                           <label for="">Name</label>
-                        <input type="text" class="form-control" placeholder="Name" id="name" value="{{user.Name}}" name="name"><br>
+                        <input type="text" class="form-control" placeholder="Name" id="name" value="{{user.Name}}" name="name" required><br>
 
                        
 
                         
                        <div class="form-group">
     <label for="exampleFormControlTextarea1">Address</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Address" rows="3" name="address"></textarea>
+    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Address" rows="3" name="address" required></textarea>
   </div>
 
                         <label for="">Pincode</label>
-                        <input type="text" class="form-control" id="pincode" placeholder="Pincode" name="pincode">
+                        <input type="text" class="form-control" id="pincode" placeholder="Pincode" name="pincode" required>
 
                         <label for="">Mobile</label>
-                        <input type="text" class="form-control" name="mobile" placeholder="Mobile number" id="mobile">
+                        <input type="text" class="form-control" name="mobile" placeholder="Mobile number" id="mobile" required>
 
                         <input type="text" name="userId" id="" value="{{user._id}}" hidden>
 
@@ -71,9 +71,9 @@
             "key": "rzp_test_0XwHNYH2apeIco", // Enter the Key ID generated from the Dashboard
             "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
             "currency": "INR",
-            "name": "Crossroads",
+            "name": "MyeCart",
             "description": "Test Transaction",
-            "image": "https://example.com/your_logo", //Here we can set the logo
+            "image": "/icon_of_website/indexq.jpeg", //Here we can set the logo
             "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
             "handler": function (response) {
                 //alert(response.razorpay_payment_id);
@@ -82,9 +82,9 @@
                 verifyPayment(response,order)
             },
             "prefill": {
-                "name": "Gaurav Kumar",
-                "email": "gaurav.kumar@example.com",
-                "contact": "9999999999"
+                "name": "Sivin Saji",
+                "email": "sivinsaji22@gmail.com",
+                "contact": "9947241345"
             },
             "notes": {
                 "address": "Razorpay Corporate Office"

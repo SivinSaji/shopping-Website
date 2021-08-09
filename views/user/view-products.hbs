@@ -8,14 +8,14 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" style="height: 11rem; width: 100%;" src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX45634096.jpg" alt="First slide">
+      <img class="d-block w-100" style="width: 100%; border-radius: 3px;" src="/slide-images/IMG_20210809_091748.jpg" alt="Myecart">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" style="height: 11rem; width: 100%;" src="/slide-images/01_21st_Pantry-pc1x._CB666446734_.jpg" alt="Second slide">
+      <img class="d-block w-100" style=" width: 100%; border-radius: 3px;" src="/slide-images/01_21st_Pantry-pc1x_CB666446734_.jpg" alt="Second slide">
     </div>
     
         <div class="carousel-item">
-      <img class="d-block " style="height: 11rem; width: 100%;" src="/slide-images/240_F_383218115_jOpAGds2lc9Iia0hjwm0Zw5o2FeHGKqq.jpg" alt="Third slide">
+      <img class="d-block " style=" width: 100%;  border-radius: 3px;" src="/slide-images/side.jpg" alt="Third slide">
     </div>      
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -27,20 +27,20 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+</section>
 
-     
-<!--Category Display-->
-      <h5><b style="padding-left: 12px; color: #696969;">Category</b></h5>
+<section>
    <div class="container-fluid mt-3">
+      <h5 style="color: #696969;"> <b>Category</b></h5>
       <div class="row scrollmenu">
          <div class="col-md-12">
             {{#each categories}}
-           
-               <div class="card align-items-center text-center mr-2" style="width:6rem; height:5rem; display:inline-block;">
+            <a href="" style="text-decoration:none; color:black;">
+               <div class="card align-items-center text-center mr-3" style="width:6rem; height:5rem; display:inline-block;">
                   <img class="mt-1" src="/category-images/{{this._id}}.jpg" alt="{{this.name}}" style="height:3rem; width:3rem;"><br>
-                  <small class="card-title font-weight-bold mt-1">{{this.name}}</small>
+                  <p class="limit-line-length"><small class="card-title font-weight-bold mt-1">{{this.name}}</small></p>
                </div>
-           
+            </a>
             {{/each}}
          </div>
       </div>
@@ -52,7 +52,7 @@
    <!--Product Display-->
    <div class="container-fluid mt-3">
       {{#each categories}}
-      <h5 class="limit-line-length">{{this.displayName}}</h5>
+      <h5 class="limit-line-length"> <b  style="color: #696969;">{{this.name}}</b></h5>
       <div class="row">
          {{#each product}}
          <div class="col-6 col-md-2 pb-4">
@@ -63,7 +63,7 @@
                   <div style="height:2.7em; width:7em;">
                      <h6 class="card-title product-title">{{this.Name}}</h6>
                   </div>
-                  <h6 class="card-text text-success limit-line-length" style="max-width:7em;">{{this.Price}}</h6>
+                  <h6 class="card-text text-success limit-line-length" style="max-width:7em;">₹{{this.Price}}</h6>
                <!--  <p class="card-text">{{this.description}}</p> -->
              </a>
                  <button class="btn btn-primary mt-2" onclick="addToCart('{{this._id}}')" style="width:7em;height:auto">Add to Cart</button>
