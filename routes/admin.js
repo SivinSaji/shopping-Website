@@ -8,7 +8,7 @@ var productHelpers=require('../helpers/product-helpers')
     if(req.session.adminLoggedIn){
       next()
     }else{
-       res.redirect('admin/login')
+       res.redirect('/admin/login')
     }
   }
 /* GET users listing. */
@@ -83,7 +83,7 @@ router.get('/logout',(req,res)=>{
 })
 
 
-router.get('/add-product',function (req,res){
+router.get('/add-product',verifyLogin,function (req,res){
   let adminDetails=req.session.admin
   productHelpers.getAllCategory().then((category)=>{
     console.log("$$$$$");
@@ -114,7 +114,7 @@ router.post('/add-product',verifyLogin ,(req,res)=>{
 })
 
 
-router.get('/delete-product/:id',(req,res)=>{
+router.get('/delete-product/:id',verifyLogin,(req,res)=>{
   let proId=req.params.id   //Here we pass the product id in url and in get method we can use it by params
   console.log(proId)
   productHelpers.deleteProduct(proId).then((response)=>{
@@ -125,14 +125,14 @@ router.get('/delete-product/:id',(req,res)=>{
 
 
 //Here we show the edit products in edit-product.hbs
-router.get('/edit-product/:id',async(req,res)=>{
+router.get('/edit-product/:id',verifyLogin,async(req,res)=>{
   let adminDetails=req.session.admin
   let product=await productHelpers.getProductDetalis(req.params.id)
   console.log(product)
   res.render('admin/edit-product',{product,admin:true,adminDetails})
 })
 
-router.post('/edit-product/:id',(req,res)=>{
+router.post('/edit-product/:id',verifyLogin,(req,res)=>{
   console.log(req.params.id);
   productHelpers.updateProduct(req.params.id,req.body).then(()=>{
     res.redirect('/admin')
@@ -150,7 +150,7 @@ router.post('/edit-product/:id',(req,res)=>{
     })
   })
 
-  router.get('/remove-user/:id',(req,res)=>{
+  router.get('/remove-user/:id',verifyLogin,(req,res)=>{
     let userId=req.params.id
     console.log(userId);
     productHelpers.deleteUser(userId).then((response)=>{
@@ -158,13 +158,13 @@ router.post('/edit-product/:id',(req,res)=>{
     })
   })
 
-  router.get('/remove-all-users',(req,res)=>{
+  router.get('/remove-all-users',verifyLogin,(req,res)=>{
     productHelpers.deleteAllUsers().then((response)=>{
       res.redirect('/admin/all-users')
     })
   })
 
-  router.get('/all-orders',async(req,res)=>{
+  router.get('/all-orders',verifyLogin,async(req,res)=>{
     let adminDetails=req.session.admin
     let orders= await productHelpers.getAllOrders()
     let users=await productHelpers.getAllusers()
@@ -183,26 +183,26 @@ router.post('/edit-product/:id',(req,res)=>{
     console.log(orderItems)
   })
 
-  router.get('/change-status',(req,res)=>{
+  router.get('/change-status',verifyLogin,(req,res)=>{
     let status=req.query.status
     let orderId=req.query.orderId
     productHelpers.changeStatus(orderId,status)
     res.redirect('/admin/all-orders')
   })
-router.get('/all-categories',async(req,res)=>{
+router.get('/all-categories',verifyLogin,async(req,res)=>{
   let adminDetails=req.session.admin
   let categories=await productHelpers.getAllCategory()
   res.render('admin/all-categories',{admin:true,adminDetails,categories})
 })
 
-router.get('/add-category',(req,res)=>{
+router.get('/add-category',verifyLogin,(req,res)=>{
   let adminDetails=req.session.admin
   res.render('admin/add-category',{admin:true,adminDetails})
 })
 
 
 
-  router.post('/add-category',function(req,res){
+  router.post('/add-category',verifyLogin,function(req,res){
     productHelpers.addNewCategory(req.body).then((id)=>{
     let image=req.files.image
      console.log(id);
@@ -216,14 +216,14 @@ router.get('/add-category',(req,res)=>{
 
    })
  }),
- router.get('/edit-category/:id',async(req,res)=>{
+ router.get('/edit-category/:id',verifyLogin,async(req,res)=>{
   let categoryId=req.params.id;
   let category=await productHelpers.CategoryDetails(categoryId)
   res.render('admin/edit-category',{category})
   console.log("%%%%%%%%%%%");
   console.log(category);
  })
-router.post('/edit-category/:id',(req,res)=>{
+router.post('/edit-category/:id',verifyLogin,(req,res)=>{
   console.log('$$$$$$$$$$$$');
   console.log(req.body);
   productHelpers.editCategory(req.body,req.params.id).then(()=>{
@@ -236,7 +236,7 @@ router.post('/edit-category/:id',(req,res)=>{
 
 }),
 
-router.get('/delete-category/:id',(req,res)=>{
+router.get('/delete-category/:id',verifyLogin,(req,res)=>{
      console.log(req.params.id);
   productHelpers.deleteCategory(req.params.id).then(()=>{
     res.redirect('/admin/all-categories')

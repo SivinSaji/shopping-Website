@@ -40,9 +40,8 @@ var showResults = debounce(function (arg) {
       } else {
         console.table(data);
         $("#search-results").append('<p class="text-center m-0 lead">Products</p>');
-        data.forEach(x => {
-          var a=x.Name
-          $("#search-results").append('<a href="/product-page" ><p class="m-2 mt-0 lead">' + x.Name + '</p> </a>');
+        data.forEach(product=> {
+        $("#search-results").append('<a href="" ><p class="m-2 mt-0 lead">' + product.Name + '</p> </a>');
 /**hoi *//*
 <script>
 var val = 55;

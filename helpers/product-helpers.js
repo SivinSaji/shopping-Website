@@ -285,6 +285,28 @@ getSelectedProduct:(productId)=>{
     let product=await db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id:objectId(productId)})
     resolve(product)
   })
+},
+
+/*Get the products in a specific category*/
+getSelectedCategoryProducts:(categoryId)=>{
+  return new Promise(async(resolve,reject)=>{
+   let products=await db.get().collection(collection.PRODUCT_COLLECTION).aggregate([
+   
+     {
+       $match:{category:objectId(categoryId)}
+     },
+     {
+       $project:{
+        Name:1,Price:1,Description:1,category:'$category.name'
+       }
+     }
+     
+     
+   ]).toArray()
+   console.log(products);
+     resolve(products)
+    
+  })
 }
 
 }

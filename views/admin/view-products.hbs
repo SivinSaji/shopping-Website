@@ -8,8 +8,7 @@
     <tr>
       <th scope="col">No</th>
       <th scope="col">Name</th>
-      <th scope="col">Category</th>
-      <th scope="col">Description</th>
+      <th scope="col">Price</th>
       <th scope="col">Image</th>
       <th scope="col">Options</th>
     </tr>
@@ -22,10 +21,10 @@
       <th scope="row">1</th>
       <td>{{this.Name}}</td>
      
-      <td>{{this.Category}}</td>
-      <td>{{this.Description}}</td>
      
-      <td>{{this.Price}}</td>
+
+     
+      <td>₹{{this.Price}}</td>
       <td><img style="width:50px; height:50px;"" src="/product-images/{{this._id}}.jpg" alt=""></td>
       <td>
         <a href="/admin/edit-product/{{this._id}}" class="btn btn-primary">Edit</a>

@@ -218,5 +218,19 @@ router.get('/product-page/:id', async(req,res)=>{
   }
 
 })
+
+router.get('/category-page/:id', async(req,res)=>{
+  let products=await productHelpers.getSelectedCategoryProducts(req.params.id)
+  let category=await productHelpers.CategoryDetails(req.params.id)
+  if(req.session.user){
+    let user=req.session.user
+  cartCount=await userHelpers.getCartCount(req.session.user._id)
+  res.render('user/category-page',{products,user:req.session.user,cartCount,user,category})
+  }
+  else{
+    res.render('user/category-page',{products,user:req.session.user,category})
+  }
+
+})
 module.exports = router;
  
