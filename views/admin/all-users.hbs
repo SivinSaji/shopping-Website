@@ -10,6 +10,7 @@
                         <th scope="col">No.</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Account created on</th>
                         <th scope="col">Remove</th>
                     </tr>
                 </thead>
@@ -19,6 +20,7 @@
                         <th scope="row">{{@index}}</th>
                         <td>{{this.Name}}</td>
                         <td>{{this.Email}}</td>
+                        <td>{{this.Date}}</td>
                         <td><a href="/admin/remove-user/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are You Sure to Delete {{this.Name}} ?')">Remove</a></td>
                     </tr>
                     {{/each}}

@@ -41,6 +41,16 @@ module.exports={
           }
           else{
           userData.Password = await bcrypt.hash(userData.Password, 10);
+          let  date= new Date()
+        console.log(date.toLocaleString('en-US', {
+        weekday: 'short', // "Sat"
+        month: 'long', // "June"
+        day: '2-digit', // "01"
+        year: 'numeric' // "2019"
+        }))
+        console.log(date.toDateString())
+        console.log(date.toLocaleTimeString())
+          userData.Date = await date.toDateString()+' Time: '+date.toLocaleTimeString()
           db.get()
             .collection(collection.USER_COLLECTION)
             .insertOne(userData)

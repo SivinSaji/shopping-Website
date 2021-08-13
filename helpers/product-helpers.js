@@ -81,10 +81,21 @@ module.exports={
         if(emailExist){
           resolve({ status:true});
         }else{
-          adminData.Password = await bcrypt.hash(adminData.Password, 10);
         
         if (adminData.Code==="sivin123") {
+          
+          let  date= new Date()
+          console.log(date.toLocaleString('en-US', {
+          weekday: 'short', // "Sat"
+          month: 'long', // "June"
+          day: '2-digit', // "01"
+          year: 'numeric' // "2019"
+          }))
+          console.log(date.toDateString())
+          console.log(date.toLocaleTimeString())
+          adminData.Password = await bcrypt.hash(adminData.Password, 10);
           adminData.Code= await bcrypt.hash(adminData.Code, 10);
+          adminData.Date = await date.toDateString()+' Time: '+date.toLocaleTimeString()
          // adminData.Password = await bcrypt.hash(adminData.Password, 10);
           db.get()
             .collection(collection.ADMIN_COLLECTION)
