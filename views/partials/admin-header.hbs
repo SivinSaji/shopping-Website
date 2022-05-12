@@ -1,27 +1,29 @@
  <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-info">
-            <a class="navbar-brand" href="#">Shoping Cart Admin</a>
+            <a class="navbar-brand active" href="/admin"> <b> MyeCart Admin</b></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                 {{#if adminDetails}}
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
                         <a class="nav-link" href="/admin">All Products<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="/admin/all-orders">All Orders</a>
                     </li>
-                     <li class="nav-item">
+                     <li class="nav-item active">
                         <a class="nav-link" href="/admin/all-users">All Users</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="/admin/all-categories">All Categories</a>
                     </li>
                     
                 </ul>
+                
                 <div class="dropdown">
   <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     {{#if adminDetails}}
@@ -39,6 +41,7 @@
     {{/if}}       
   </div>
 </div>
+{{/if}}
             </div>
         </nav>
     </header>

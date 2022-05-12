@@ -1,10 +1,11 @@
 <section>
-    <div class="container-fluid mt-5">
+    <h2 class="text-center">All Users</h2>
+    <div class="container-fluid mt-4">
         <div>
             <a href="/admin/remove-all-users" onclick="return confirm('Are You Sure to Remove All Users ?')" class="btn btn-danger float-end mb-1">Remove All Users</a>
         </div>
         <div class="table-responsive-md mt-2">
-            <table class="table responsive">
+            <table class="table responsive" id="userTable">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">No.</th>
@@ -29,3 +30,8 @@
         </div>
     </div>
 </section>
+<script>
+  $(document).ready( function () {
+    $('#userTable').DataTable();
+} );
+</script>

@@ -1,4 +1,4 @@
-<section>
+<!--<section>
 
     <div class="container-fluid mt-4"></div>
     <div class="row">
@@ -30,7 +30,33 @@
     </div>
     
 </section>
+-->
+<section>
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-md-6">
+            <h2 class="text-center">Edit Category</h2>
+           <form action="/admin/edit-category/{{category._id}}" enctype="multipart/form-data" method="POST">
+            <div class="form-group">
+    <label for="formGroupExampleInput">Name</label>
+    <input type="text" value="{{category.name}}" name="name" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Display Name</label>
+    <input type="text" value="{{category.displayName}}" name="displayName" class="form-control">
+  </div>
+ 
+  <div class="form-group">
+      <img src="/category-images/{{category._id}}.jpg" alt="Product Img loading" style="height: auto; width:100px;" id="imgView" class="pt-3">
+    <input type="file" name="Image" class="form-control" onchange="viewImage(event)">
+  </div>
 
+                  <button type="submit" class='btn btn-success mt-2'>submit</button>
+            </form>
+         </div>
+      </div>
+   </div>
+</section>
 <script>
   function viewImage(event){
     document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])

@@ -1,50 +1,46 @@
-<section>
 
-    <div class="container-fluid mt-1">
-    <div class="row">
-        <div class="col-md-6">
-         
+
+<section>
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-md-6">
             <h2 class="text-center">Add Product</h2>
-            <form action="/admin/add-product" class="ml-4" enctype="multipart/form-data"  method="POST">
-  <div class="form-group">
+           <form action="/admin/add-product" enctype="multipart/form-data" method="POST">
+           <div class="form-group">
     <label for="formGroupExampleInput">Name</label>
-    <input type="text" name="Name" class="form-control">
+    <input type="text" name="Name" class="form-control" required>
   </div>
   
   <div class="form-group">
     <label>Price</label>
-    <input type="number" name="Price" class="form-control">
+    <input type="number" name="Price" class="form-control" required>
   </div>
   <div class="form-group">
     <label for="formGroupExampleInput2">Description</label>
-    <input type="text" name="Description" class="form-control">
+    <input type="text" name="Description" class="form-control" required>
   </div>
+ 
   <div class="form-group">
-    <label for="formGroupExampleInput2">Image</label>
-    <input type="file" name="Image" class="form-control">
+      <img src="/product-images/{{product._id}}.jpg" alt="" style="height: auto; width:100px;" id="imgView" class="pt-3">
+    <input type="file" name="Image" class="form-control" onchange="viewImage(event)" required>
   </div>
-  <div class="form-group">
-     <img src="/product-images/{{product._id}}.jpg" alt="" style="height: auto; width:100px;" id="imgView" class="pt-3">
-     </div>
   <div class="form-group">
                <label for="category">Category</label>
-               <select class="custom-select mr-sm-2" name="category" id="inlineFormCustomSelect">
+               <select class="custom-select mr-sm-2" name="category" id="inlineFormCustomSelect" required>
                   <option selected value="">Choose...</option>
                   {{#each category}}
                   <option value="{{this._id}}">{{this.name}}</option>
                   {{/each}}
               </select>
         </div>
-  
-  
-    <button type="submit" class='btn btn-success mt-0'>submit</button>
-  
-</form>
-        </div>
-    
-    
-   
-             </div>
-        
-    </div>
+                   <button type="submit" class='btn btn-success mt-0'>submit</button>
+            </form>
+         </div>
+      </div>
+   </div>
 </section>
+<script>
+  function viewImage(event){
+    document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])
+  }
+</script>

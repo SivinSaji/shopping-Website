@@ -1,14 +1,16 @@
 <section>
-    <div class="container-fluid my-5">
-
-        <a href="/admin/cancel-all-orders" onclick="return confirm('Are You Sure to Cancel All Orders ?')"
+    <h2 class="text-center">All Orders</h2>
+     <div class="container-fluid mt-4">
+        <div>
+             <a href="/admin/cancel-all-orders" onclick="return confirm('Are You Sure to Cancel All Orders ?')"
             class="btn btn-danger mb-2">Cancel All Orders</a>
 
-        <div class="table-responsive" style="overflow: visible;">
-            <table class="table" id="table">
+        </div>
+        <div class="table-responsive-md mt-2">
+            <table class="table responsive" id="orderTable">
                 <thead class="table-dark">
-                    <tr class="align-middle">
-                        <th scope="col">Date</th>
+                    <tr>
+                       <th scope="col">Date</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Address</th>
@@ -21,11 +23,10 @@
                         <th scope="col">View</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     {{#each orders}}
                     <tr class="align-middle">
-                        <td>{{this.date}}</td>
+                         <td>{{this.date}}</td>
                         <td>{{this.deliveryDetails.name}}</td>
                         <td>{{this.deliveryDetails.email}}</td>
                         <td>{{this.deliveryDetails.address}}</td>
@@ -60,6 +61,13 @@
                     {{/each}}
                 </tbody>
             </table>
+            
         </div>
     </div>
 </section>
+
+<script>
+  $(document).ready( function () {
+    $('#orderTable').DataTable();
+} );
+</script>

@@ -1,11 +1,8 @@
 <div class="container-fluid">
     <div class="row mt-5">
-        <div class="col-md-6">
+        <div class="col-md-6 m-auto">
             <h2>Create Admin Account</h2>
             <form action="/admin/signup" method="post">
-             {{#if signUpErr}}
-            <p class="error">{{signUpErr}}</p>
-            {{/if}}
                 <label for="name">Name</label>
                 <input type="text" name="Name" placeholder="Name" class="form-control">
                 <label for="email">Email</label>
@@ -15,7 +12,10 @@
                     <input type="password" class="form-control" name="Code" placeholder="Code">
                 <label for="password">Password</label>
                 <input type="password" name="Password" placeholder="Password" class="form-control"><br>
-                <a href="/admin/login" class="float-right">Already have account?</a><br>
+                 {{#if signUpErr}}
+            <p class="error" style="color: #ef3939;">{{signUpErr}}</p>
+            {{/if}}
+                <a href="/admin/login" class="float-right text-decoration-none">Already have account?</a><br>
                 <button type="submit" class="btn btn-success">SUBMIT</button>
             </form>
         </div>

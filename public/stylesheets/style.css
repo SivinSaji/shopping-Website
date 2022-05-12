@@ -2,6 +2,9 @@
 .navbar-light .navbar-brand {
     color: #fff;
     }
+    .navbar-light .navbar-brand:hover {
+      color: #fff;
+      }
     .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
     color: #fff;
     }
@@ -31,10 +34,7 @@
     white-space:nowrap;
     display:block;
   }
-  
-  
-  
-  
+
   
   /* Limit line length of a sentence in horizontal and vertical */
   
@@ -60,3 +60,24 @@
     border-radius:100%;
   }
     
+	@media screen and (max-width: 600px) {
+
+		/*Hide in small Devices*/
+		.large-device1{
+			display: none;
+		}
+    .dataTables_filter{
+      display: none;
+    }
+    .dataTables_length{
+      display: none;
+    }
+	}
+
+	@media screen and (min-width: 600px) {
+
+		/*Hide in medium Devices*/
+		.small-device1{
+			display: none;
+		}
+	}

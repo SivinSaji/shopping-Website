@@ -1,12 +1,10 @@
 <section>
-
-    <div class="container-fluid mt-4"></div>
-    <div class="row">
-        <div class="col-md-6">
-         
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-md-6">
             <h2 class="text-center">Add Category</h2>
-            <form action="/admin/add-category" class="ml-4" enctype="multipart/form-data"  method="POST">
-  <div class="form-group">
+           <form action="/admin/add-category" enctype="multipart/form-data" method="POST">
+           <div class="form-group">
     <label for="formGroupExampleInput">Name</label>
     <input type="text" name="name" class="form-control">
   </div>
@@ -22,16 +20,12 @@
                 <input type="file" name="image" class="custom-file-input" id="customFile" onchange="viewImage(event)">
                 <label class="custom-file-label" for="customFile">Choose file</label>
                 </div>
-  
-    <button type="submit" class='btn btn-success mt-2'>submit</button>
-  
-</form>
-</center>
-        </div>
-    </div>
-    
+                  <button type="submit" class='btn btn-success mt-2'>submit</button>
+            </form>
+         </div>
+      </div>
+   </div>
 </section>
-
 <script>
   function viewImage(event){
     document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])

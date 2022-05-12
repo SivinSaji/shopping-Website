@@ -1,40 +1,36 @@
-<section>
 
-    <div class="container-fluid mt-1"></div>
-    <div class="row">
-        <div class="col-md-6">
-         
+<section>
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-md-6">
             <h2 class="text-center">Edit Product</h2>
-            <form action="/admin/edit-product/{{product._id}}" class="ml-4" enctype="multipart/form-data"  method="POST">
-  <div class="form-group">
-    <label for="formGroupExampleInput">Name</label>
-    <input type="text" name="Name" class="form-control" value="{{product.Name}}">
-  </div>
-  <div class="form-group">
+           <form action="/admin/edit-product/{{product._id}}" enctype="multipart/form-data" method="POST">
+               <div class="form-group">
+                  <label for="email">Name</label>
+                  <input type="text" name="Name" class="form-control" value="{{product.Name}}" required>
+               </div>
+               <!--
+               <div class="form-group">
     <label for="formGroupExampleInput2">Category</label>
     <input type="text" name="Category" class="form-control" value="{{product.Category}}">
-  </div>
-  <div class="form-group">
+  </div>-->
+              <div class="form-group">
     <label for="formGroupExampleInput2">Price</label>
-    <input type="number" name="Price" class="form-control" value="{{product.Price}}">
+    <input type="number" name="Price" class="form-control" value="{{product.Price}}" required>
   </div>
   <div class="form-group">
     <label for="formGroupExampleInput2">Description</label>
-    <input type="text" name="Description" class="form-control" value="{{product.Description}}">
+    <input type="text" name="Description" class="form-control" value="{{product.Description}}" required>
   </div>
   <div class="form-group">
-      <img src="/product-images/{{product._id}}.jpg" alt="Product Img loading" style="height: auto; width:100px;" id="imgView" class="pt-3">
-    <label for="formGroupExampleInput2">Image</label>
-    <input type="file" name="Image" class="form-control" onchange="viewImage(event)">
+      <img src="/product-images/{{product._id}}.jpg" alt="" style="height: auto; width:100px;" id="imgView" class="pt-3">
+    <input type="file" name="Image" class="form-control" onchange="viewImage(event)" required>
   </div>
-  
-    <button type="submit" class='btn btn-success mt-0'>submit</button>
-  
-</form>
-</center>
-        </div>
-    </div>
-    
+                   <button type="submit" class='btn btn-success mt-0'>submit</button>
+            </form>
+         </div>
+      </div>
+   </div>
 </section>
 
 <script>
