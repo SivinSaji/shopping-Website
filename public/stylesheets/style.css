@@ -72,6 +72,9 @@
     .dataTables_length{
       display: none;
     }
+    .desktop-banner{
+      display: none;
+    }
 	}
 
 	@media screen and (min-width: 600px) {
@@ -80,4 +83,7 @@
 		.small-device1{
 			display: none;
 		}
+    .mobile-banner{
+      display: none;
+    }
 	}
