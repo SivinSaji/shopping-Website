@@ -19,8 +19,8 @@
             <tbody>
                 {{#each products}}
                 <tr>
-                    <td style="width: 20%;"><img style="width: 70px; height: 70px;" src="/product-images/{{this.product._id}}.jpg" alt="">
-                    <div class="quantity mt-2 ml-1">
+                    <td style="width: 20%;"><img style="width: 45px; height: 70px;" src="/product-images/{{this.product._id}}.jpg" alt="">
+                    <div class="quantity mt-2 ">
                     <button class="cart-item-count"  onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',-1)"><b>-</b></button>
                          <span id="{{this.product._id}}">{{this.quantity}}</span>
                           <button class="cart-item-count" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',1)"><b>+</b></button>

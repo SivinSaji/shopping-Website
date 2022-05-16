@@ -75,6 +75,9 @@
     .desktop-banner{
       display: none;
     }
+    .desktop-view{
+      display: none;
+    }
 	}
 
 	@media screen and (min-width: 600px) {
@@ -84,6 +87,9 @@
 			display: none;
 		}
     .mobile-banner{
+      display: none;
+    }
+    .mobile-view{
       display: none;
     }
 	}

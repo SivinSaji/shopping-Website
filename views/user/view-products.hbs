@@ -1,3 +1,4 @@
+<span class="mobile-view">
 <section style="padding: 10px;">
    <!--Slide Images-->
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -43,14 +44,14 @@
 </div>
 </section>
 
-<section>
+ <section>
    <div class="container-fluid mt-3">
       <h5 style="color: #696969;"> <b>Category</b></h5>
       <div class="row scrollmenu">
          <div class="col-md-12">
             {{#each categories}}
             <a href="/category-page/{{this._id}}" style="text-decoration:none; color:black;">
-               <div class="card align-items-center text-center mr-3" style="width:6rem; height:5rem; display:inline-block;">
+               <div class="card align-items-center text-center mr-3" style="width:6rem; height: 5.5rem; display:inline-block;">
                   <img class="mt-1" src="/category-images/{{this._id}}.jpg" alt="{{this.name}}" style="height:3rem; width:3rem;"><br>
                   <p class="limit-line-length"><small class="card-title font-weight-bold mt-1">{{this.name}}</small></p>
                </div>
@@ -72,7 +73,7 @@
          <div class="col-6 col-md-2 pb-4">
             <a href="/product-page/{{this._id}}" style="text-decoration:none; color:black;">
             <div class="card align-items-center text-center">
-               <img class="mt-3" src="/product-images/{{this._id}}.jpg" style="height:6rem; width:6rem;">
+               <img class="mt-3" src="/product-images/{{this._id}}.jpg" style="height:6rem; width:3.5rem;">
                <div class="card-body">
                   <div style="height:2.7em; width:7em;">
                      <h6 class="card-title product-title">{{this.Name}}</h6>
@@ -82,6 +83,7 @@
              </a>
                  <button class="btn btn-primary mt-2" onclick="addToCart('{{this._id}}')" style="width:7em;height:auto">Add to Cart</button>
              </div>
+             
             </div>
          </div>
          {{/each}}
@@ -90,3 +92,504 @@
    </div>
     
 </section>
+</span>
+
+<span class="desktop-view">
+    <section>
+   <div class="container-fluid">
+      <div class="row scrollmenu">
+         <div class="col-md-12">
+            {{#each categories}}
+            <a href="/category-page/{{this._id}}" style="text-decoration:none; color:black;">
+              
+                <div class="category-col align-items-center text-center mr-5 ml-5" style="display:inline-block;">
+            <img src="/category-images/{{this._id}}.jpg" alt="{{this.name}}">
+            <h6 style="font-size: 14px; font-weight: bold; color: #212121;">{{this.name}}</h6>
+        </div>
+            </a>
+            {{/each}}
+         </div>
+      </div>
+   </div>
+</section>
+   
+<section style="padding:5px;">
+   <!--Slide Images-->
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+       <span class="mobile-banner">
+      <img class="d-block w-100" style="width: 100%; border-radius: 3px;" src="/slide-images/IMG_20210809_091748.jpg" alt="Myecart">
+      </span>
+       <span class="desktop-banner">
+      <img class="d-block w-100" style="width: 100%; border-radius: 3px;" src="/slide-images/banner3.jpg" alt="Myecart">
+      </span>
+    </div>
+    <div class="carousel-item">
+       <span class="mobile-banner">
+        <img class="d-block w-100" style=" width: 100%; border-radius: 3px;" src="/slide-images/01_21st_Pantry-pc1x_CB666446734_.jpg" alt="Second slide">
+       </span>
+         <span class="desktop-banner">
+        <img class="d-block w-100" style=" width: 100%; border-radius: 3px;" src="/slide-images/banner2.jpg" alt="Second slide">
+       </span>    
+    </div>
+        <div class="carousel-item">
+      <span class="mobile-banner">
+         <img class="d-block " style=" width: 100%;  border-radius: 3px;" src="/slide-images/side.jpg" alt="Third slide">
+      </span>
+      <span class="desktop-banner">
+         <img class="d-block " style=" width: 100%;  border-radius: 3px;" src="/slide-images/banner4.jpg" alt="Third slide">
+      </span>
+    </div>      
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</section>
+
+
+
+  <!--Product Display
+<section>
+   <div class="container-fluid mt-3">
+      {{#each categories}}
+       <h5 class="limit-line-length"> <b  style="color: #696969;">{{this.name}}</b></h5>
+      <div class="row">       
+         {{#each product}}
+         <div class="col-6 col-md-2 pb-4">
+            <a href="/product-page/{{this._id}}" style="text-decoration:none; color:black;">
+            <div class="card align-items-center text-center">
+               <img class="mt-3" src="/product-images/{{this._id}}.jpg" style="height:6rem; width:6rem;">
+               <div class="card-body">
+                  <div style="height:2.7em; width:7em;">
+                     <h6 class="card-title product-title">{{this.Name}}</h6>
+                  </div>
+                  <h6 class="card-text text-success limit-line-length" style="max-width:7em;">₹{{this.Price}}</h6>
+               <!--  <p class="card-text">{{this.description}}</p> -->
+               <!--
+             </a>
+                 <button class="btn btn-primary mt-2" onclick="addToCart('{{this._id}}')" style="width:7em;height:auto">Add to Cart</button>
+             </div>
+             
+            </div>
+         </div>
+         {{/each}}
+      </div>
+      {{/each}}
+   </div>   
+</section>
+-->
+
+<!-- Mobile section -->
+
+<section>
+    {{#each categories}}
+    <div class="card">
+          
+        <div class="common-heading">
+           
+            <div class="common-heading-left">
+             <h1>{{this.name}}</h1>
+             <h2>More than 4000mAh</h2>
+            </div>
+            <div class="common-heading-right">
+              <a href="/category-page/{{this._id}}"><button>view all</button></a>
+            </div>
+             
+        </div>
+        <div class="common-row">
+            {{#each product}}
+            
+            <div class="common-col">
+                <a href="/product-page/{{this._id}}" style="text-decoration:none; color:black;">
+                <img src="/product-images/{{this._id}}.jpg" alt="mobile">
+                <h3>{{this.Name}}</</h3>
+             
+                <h6>Now <i class="fas fa-rupee-sign"></i>{{this.Price}}</h6>
+                </a>
+                <button class="btn btn-primary"  onclick="addToCart('{{this._id}}')" style="width:5.5em;height:2.2em"><small>Add to Cart</small></button>
+            </div>
+            {{/each}}
+        </div>
+       
+    </div>
+    {{/each}}
+</section>
+</span>
+<!--footer-->
+ <footer>
+      <div class="main-content" id="footermain" style="">
+        <div class="left box">
+          <h2>About us</h2>
+          <div class="content">
+            <p>Myecart is a demo shopping website where you can view products of different categories you can add products to your cart and can place an order for the product in this website we provide both online payment and cash on delivery. there is an option to check the status of your order.</p>
+            <div class="social">
+              <a href="https://www.linkedin.com/in/sivin-saji"><span class="fab fa-linkedin"></span></a>
+              <a href="https://github.com/SivinSaji"><span class="fab fa-github"></span></a>
+              <a href="https://instagram.com/sivin_saji"><span class="fab fa-instagram"></span></a>
+              <a href="https://www.youtube.com/c/INFOPRISM"><span class="fab fa-youtube"></span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="center box">
+          <h2>Address</h2>
+          <div class="content">
+            <div class="place">
+              <span class="fas fa-map-marker-alt"></span>
+              <span class="text">Thrissur, Kerala</span>
+            </div>
+            <div class="phone">
+              <span class="fas fa-phone-alt"></span>
+              <span class="text">+91 9947241345</span>
+            </div>
+            <div class="email">
+              <span class="fas fa-envelope"></span>
+              <span class="text">sivinsaji22@gmail.com</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="right box">
+          <h2>Contact us</h2>
+          <div class="content">
+            <form action="#">
+              <div class="email">
+                <div class="text">Email *</div>
+                <input type="email" required>
+              </div>
+              <div class="msg">
+                <div class="text">Message *</div>
+                <textarea rows="2" cols="25" required></textarea>
+              </div>
+              <div class="sendbtn">
+                <button type="submit">Send</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <center>
+          <span class="credit">Created By <a href="https://www.sivinsaji.ml">Sivin Saji</a> | </span>
+          <span class="far fa-copyright"></span><span> 2021-2022 All rights reserved.</span>
+        </center>
+      </div>
+    </footer>
+
+<style>
+
+ /* <!-- category-section --> */
+
+
+ .category-row{
+     display: flex;
+     justify-content: space-evenly;
+     width: 100%;
+     height: auto;
+     margin-top: 10px;
+     text-align: center;
+ }
+ .category-col{
+     padding: 10px 0px;
+     cursor: pointer;
+     color: rgb(85,83,83);
+ }
+
+ .category-col img{
+     width: 64px;
+     height: 64px;
+ }
+ .category-col h5:hover{
+    color: #2874f0;
+ }
+ 
+/* common for all */
+
+/* <!-- Mobile section --> */
+
+.card{
+    box-shadow: rgb(177,174,174) 0px 0px 5px 1px;
+    padding: 10px 0px;
+    margin: 10px 5px;
+    border-radius: 5px;
+}
+ .common-heading{
+     display: flex;
+     justify-content: space-between;
+     width: 100%;
+     padding: 5px 20px;
+     /*
+     margin-top: 20px;
+     */
+     box-shadow: 0 1px 1px 0 rgb(0 0 0 /16%);
+ }
+ .common-heading-left h1{
+     font-size: 20px;
+     font-weight: 400;
+     padding:auto;
+ }
+ .common-heading-left h2{
+     font-size: 15px;
+     padding: 5px 0px;
+     color: rgb(145,141,138) ;
+     font-weight: 200;
+ }
+ .common-heading-right button{
+     width: 90px;
+     height: 40px;
+     font-size: 18px;
+     background-color: #2874f0;
+     border: none;
+     color: white;
+     border-radius: 2px;
+ }
+ .common-row{
+     display: flex;
+     justify-content: space-evenly;
+     width: 100%;
+     max-height: 366px;
+     margin: 10px 0px;
+ }
+ .common-col{
+     text-align: center;
+     line-height: 22px;
+ }
+ .common-col img{
+     width: 69px;
+     height: 150px;
+     transition: 300ms;
+ }
+ .common-col img:hover{
+     transform: scale(0.9);
+ }
+ .common-col h3,h4,h6{
+     text-transform: capitalize;
+     letter-spacing: 1px;
+     cursor: pointer;
+ }
+ .common-col h3{
+     margin-top: 10px;
+     font-size: 16px;
+ }
+ .common-col h4{
+     color: green;
+     font-size: 14px;
+     font-weight: 300;
+ }
+ .common-col h6{
+    color: rgb(161,161,161);
+    font-size: 12px;
+    font-weight: 100;
+ }
+
+ 
+ /* <!-- headphones and speaker section --> */
+.col-headphones img{
+    width: 125px;
+    height: 150px;
+}
+/* <!-- mens clothing --> */
+.col-men img{
+    width: 100px;
+    height: 150px;
+}
+/* <!-- Furniture Bestsellers section --> */
+
+
+.col-furniture img{
+  width: 130px;
+  width: 150px;
+}
+/* <!-- trending offers section --> */
+.col-tranding img{
+    width: 80px;
+    height: 150px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+.content1{
+  position: relative;
+  margin: 130px auto;
+  text-align: center;
+  padding: 0 20px;
+}
+.content1 .text{
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #202020;
+}
+.content1 .p{
+  font-size: 2.1875rem;
+  font-weight: 600;
+  color: #202020;
+}
+footer{
+
+  bottom: 0px;
+  width: 100%;
+  background: #111;
+}
+.main-content{
+  display: flex;
+}
+.main-content .box{
+  flex-basis: 50%;
+  padding: 10px 20px;
+}
+.box h2{
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.box .content{
+  margin: 20px 0 0 0;
+  position: relative;
+}
+.box .content:before{
+  position: absolute;
+  content: '';
+  top: -10px;
+  height: 2px;
+  width: 100%;
+  background: #1a1a1a;
+}
+.box .content:after{
+  position: absolute;
+  content: '';
+  height: 2px;
+  width: 15%;
+  background: #00CED1;
+  top: -10px;
+}
+.left .content p{
+  text-align: justify;
+}
+.left .content .social{
+  margin: 20px 0 0 0;
+}
+.left .content .social a{
+  padding: 0 2px;
+}
+.left .content .social a span{
+  height: 40px;
+  width: 40px;
+  background: #1a1a1a;
+  line-height: 40px;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+.left .content .social a span:hover{
+  background: #00CED1;
+}
+.center .content .fas{
+  font-size: 1.4375rem;
+  background: #1a1a1a;
+  height: 45px;
+  width: 45px;
+  line-height: 45px;
+  text-align: center;
+  border-radius: 50%;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.center .content .fas:hover{
+  background: #00CED1;
+}
+.center .content .text{
+  font-size: 1.0625rem;
+  font-weight: 500;
+  padding-left: 10px;
+}
+.center .content .phone{
+  margin: 15px 0;
+}
+.right form .text{
+  font-size: 1.0625rem;
+  margin-bottom: 2px;
+  color: #656565;
+}
+.right form .msg{
+  margin-top: 10px;
+}
+.right form input, .right form textarea{
+  width: 100%;
+  font-size: 1.0625rem;
+  background: #151515;
+  padding-left: 10px;
+  border: 1px solid #222222;
+}
+.right form input:focus,
+.right form textarea:focus{
+  outline-color: #3498db;
+}
+.right form input{
+  height: 35px;
+}
+.right form .sendbtn{
+  margin-top: 10px;
+}
+.right form .sendbtn button{
+  height: 40px;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: #00CED1;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: .3s;
+}
+.right form .sendbtn button:hover{
+  background: #000;
+}
+.bottom center{
+  padding: 5px;
+  font-size: 0.9375rem;
+  background: #151515;
+}
+.bottom center span{
+  color: #656565;
+}
+.bottom center a{
+  color: #00CED1;
+  text-decoration: none;
+}
+.bottom center a:hover{
+  text-decoration: underline;
+}
+@media screen and (max-width: 900px) {
+  footer{
+    position: relative;
+    bottom: 0px;
+  }
+  .main-content{
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .main-content .box{
+    margin: 5px 0;
+  }
+}
+#footermain{
+    color: #d9d9d9;
+     margin: 0; 
+     padding: 0; 
+     box-sizing: border-box; 
+     font-family: 'Poppins', sans-serif;
+}
+</style>
