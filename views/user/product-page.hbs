@@ -2,7 +2,14 @@
    <div class="container-fluid">
       <div class="row">
          <div class="col-md-5">
-            <img src="/product-images/{{product._id}}.jpg" alt="{{product.name}}" style="width:14em; height: 21em;">
+            <span class="mobile-view">
+            <center>
+            <img src="/product-images/{{product._id}}.jpg" alt="{{product.name}}"  style="width:14em; height: 21em;">
+            </center>
+            </span>
+            <span class="desktop-view">
+            <img src="/product-images/{{product._id}}.jpg" alt="{{product.name}}" class="text-align-center" style="width:14em; height: 21em;">
+            </span>
             <h5 class="mt-2">{{product.Name}}</h5>
            
             <h5 class="text-success">₹{{product.Price}}</h5>

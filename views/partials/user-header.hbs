@@ -1,8 +1,8 @@
 
  <header style="padding-bottom: 55px;">
-        <nav class="navbar navbar-expand-lg navbar-light bg-info fixed-top"  >
-            <a class="navbar-brand text-decoration-none" href="/">MyeCart</a>
-            <a class="ml-auto  text-decoration-none" style="color: #fff  " href="/cart"><i class="fas fa-shopping-cart text-white" style="margin-right: auto; font-size:20px;"></i><span class="badge badge-success" style="padding-right: 13px;" id="cart-count">{{cartCount}}</span></a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top"  >
+            <a class="navbar-brand text-decoration-none" href="/"><b>MyeCart</b></a>
+            <a class="ml-auto  text-decoration-none" style="color: #fff  " href="/cart"><i class="fas fa-shopping-cart text-white" style="margin-right: auto; font-size:20px;"></i><span class="badge badge-success" style="padding-right: 6px; margin-right: 6px;" id="cart-count">{{cartCount}}</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -15,8 +15,8 @@
                     </li>
                     
                     {{#if user}}
-                         <li class="nav-item">
-                           <a class="nav-link text-decoration-none" href="/orders">Orders</a>
+                         <li class="nav-item active">
+                           <a class="nav-link" href="/orders">Orders</a>
                           </li>
                   {{/if}}
                 </ul>
@@ -25,7 +25,7 @@
  <div class="input-group">
                <input aria-label="Search" class="form-control" onkeyup="showResults(this.value)" name="searchValue" placeholder="Search Product" type="search"/>
                <span class="group-btn">
-                  <button class="btn " style="border-radius: 2px; background-color: #00CED1; color:#fff" type="submit"><i class="fas fa-search"></i></button>
+                  <button class="btn btn-primary" style="border-radius: 2px;   color:#fff" type="submit"><i class="fas fa-search"></i></button>
                </span>
            </div>
   
@@ -35,7 +35,7 @@
       </div>
     </form>
   <div class="dropdown">
-  <button class="btn btn-info dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="btn btn-primary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     {{#if user}}
          {{user.Name}}
     {{else}}                      
