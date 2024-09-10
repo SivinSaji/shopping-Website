@@ -1,84 +1,90 @@
-   {{#if products}}
+{{#if products}}
 <section>
-    
+
     <div class="container-fluid">
         <div class="row">
-           
-        
-        <table class="table mt-5">
-            <thead>
-                <tr>
-                    <th scope="col">Item</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Price</th>
-                   <!-- <th scope="col">Quantity</th>-->
-                    <th scope="col"></th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-                {{#each products}}
-                <tr>
-                    <td style="width: 20%;"><img style="width: 45px; height: 70px;" src="/product-images/{{this.product._id}}.jpg" alt="">
-                    <div class="quantity mt-2 ">
-                    <button class="cart-item-count"  onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',-1)"><b>-</b></button>
-                         <span id="{{this.product._id}}">{{this.quantity}}</span>
-                          <button class="cart-item-count" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',1)"><b>+</b></button>
-                          </div>
-                          </td>
-                          
-                    <td style="width: 20%;">{{this.product.Name}}</td>
-                    <td style="width: 20%;">₹{{this.product.Price}}</td>
-                  <!--  <td style="width: 20%;">
+
+
+            <table class="table mt-5">
+                <thead>
+                    <tr>
+                        <th scope="col">Item</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Price</th>
+                        <!-- <th scope="col">Quantity</th>-->
+                        <th scope="col"></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each products}}
+                    <tr>
+                        <td style="width: 20%;">
+                            <div class="image-processing">
+                                <img src="/product-images/{{this.product._id}}.jpg" alt="">
+                            </div>
+                            <div class="quantity mt-2 ">
+                                <button class="cart-item-count"
+                                    onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',-1)"><b>-</b></button>
+                                <span id="{{this.product._id}}">{{this.quantity}}</span>
+                                <button class="cart-item-count"
+                                    onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',1)"><b>+</b></button>
+                            </div>
+                        </td>
+
+                        <td style="width: 20%;">{{this.product.Name}}</td>
+                        <td style="width: 20%;">₹{{this.product.Price}}</td>
+                        <!--  <td style="width: 20%;">
                         <button class="cart-item-count "  onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',-1)">-</button>
                          <span id="{{this.product._id}}">{{this.quantity}}</span>
                           <button class="cart-item-count" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',1)">+</button>
                     </td>-->
-                    <td style="width: 10%;">
-                       <button class="btn btn-danger mt-3"  onclick="removeProduct('{{this._id}}','{{this.product._id}}')"><small>Remove</small></button> 
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-           <hr>
-        </table>
-        <hr>
-        <div class="float-right pr-5" style="margin: auto;">
-            
-         <h3 class="float-left mr-5">TOTAL: ₹<span id="total">{{totalValue}}</span></h3><br>
-            <a href="/place-order" class="btn btn-success mt-3" style="width: 100%;"><b>Place Order</b></a>
+                        <td style="width: 10%;">
+                            <button class="btn btn-danger mt-3"
+                                onclick="removeProduct('{{this._id}}','{{this.product._id}}')"><small>Remove</small></button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+                <hr>
+            </table>
+            <hr>
+            <div class="float-right pr-5" style="margin: auto;">
 
-        </div>
+                <h3 class="float-left mr-5">TOTAL: ₹<span id="total">{{totalValue}}</span></h3><br>
+                <a href="/place-order" class="btn btn-success mt-3" style="width: 100%;"><b>Place Order</b></a>
+
+            </div>
         </div>
     </div>
 </section>
-    {{else}}         
-    <section>
-         <div class="container-fluid">
-   <div class="container mt-3">
-      <div class="row">
-         <div class="col-md-12 text-center">
-            <h5>Your cart is Empty</h5>
-            <a href="/" class="btn btn-primary btn-sm">Go Shopping</a>
-         </div>
-      </div>
-   </div>
-         </div>
-    </section>             
-        
-    {{/if}}
+{{else}}
+<section>
+    <div class="container-fluid">
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h5>Your cart is Empty</h5>
+                    <a href="/" class="btn btn-primary btn-sm">Go Shopping</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{/if}}
 
 
 
 <script>
-   
- function changeQuantity(cartId, proId,userId, count) {
+
+    function changeQuantity(cartId, proId, userId, count) {
         let quantity = parseInt(document.getElementById(proId).innerHTML)
         count = parseInt(count)
         $.ajax({
             url: '/change-product-quantity',
             data: {
-                user:userId,
+                user: userId,
                 cart: cartId,
                 product: proId,
                 count: count,
@@ -92,19 +98,19 @@
                 } else {
                     console.log(response)
                     document.getElementById(proId).innerHTML = quantity + count
-                    document.getElementById('total').innerHTML=response.total
+                    document.getElementById('total').innerHTML = response.total
                 }
             }
         })
-    }  
+    }
 
- function removeProduct(cartId, proId) {
+    function removeProduct(cartId, proId) {
         $.ajax({
             url: '/remove-cart-product',
             data: {
                 cart: cartId,
                 product: proId,
-               },
+            },
             method: 'post',
             success: (response) => {
                 if (response.removeProduct) {
@@ -114,15 +120,29 @@
             }
         })
     }
-   
+
 </script>
 
 <style>
-.cart-item-count{
- border-radius: 6px;
-color:#fff;
-background-color:#000000;
-width: 22px;
+    .cart-item-count {
+        border-radius: 6px;
+        color: #fff;
+        background-color: #000000;
+        width: 22px;
 
-}
+    }
+
+    .image-processing img {
+        max-width: 100%;
+        /* Make sure the image doesn't exceed the container's width */
+        max-height: 100px;
+        /* Set the maximum height */
+        object-fit: contain;
+        /* Ensure the image fits within the given space while preserving its aspect ratio */
+        width: auto;
+        /* Adjust the width automatically to maintain the aspect ratio */
+        height: auto;
+        /* Adjust the height automatically to maintain the aspect ratio */
+        transition: 300ms;
+    }
 </style>
