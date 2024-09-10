@@ -3,20 +3,25 @@
       <div class="row">
          <div class="col-md-5">
             <span class="mobile-view">
-            <center>
-            <img src="/product-images/{{product._id}}.jpg" alt="{{product.name}}"  style="width:14em; height: 21em;">
-            </center>
+               <center>
+                  <div class="image-processing">
+                     <img src="/product-images/{{product._id}}.jpg" alt="{{product.name}}"">
+                  </div>
+               </center>
             </span>
-            <span class="desktop-view">
-            <img src="/product-images/{{product._id}}.jpg" alt="{{product.name}}" class="text-align-center" style="width:14em; height: 21em;">
+            <span class=" desktop-view">
+                     <div class="image-processing">
+                        <img src="/product-images/{{product._id}}.jpg" alt="{{product.name}}" class="text-align-center">
+                     </div>
             </span>
             <h5 class="mt-2">{{product.Name}}</h5>
-           
+
             <h5 class="text-success">₹{{product.Price}}</h5>
-           
-            <button class="btn btn-success" onclick="addToCart('{{product._id}}')" style="width:8em;">Add to Cart <i class="fas fa-cart-plus"></i></button>
-           <!-- <button class="btn btn-success ml-2" onclick="buyNow('{{product._id}}')" style="width:7em;">Buy Now</button>-->
-           
+
+            <button class="btn btn-success" onclick="addToCart('{{product._id}}')" style="width:8em;">Add to Cart <i
+                  class="fas fa-cart-plus"></i></button>
+            <!-- <button class="btn btn-success ml-2" onclick="buyNow('{{product._id}}')" style="width:7em;">Buy Now</button>-->
+
          </div>
          <div class="col-md-7 pt-3">
             <h6><b style="color:#696969;">Description</b></h6>
@@ -25,3 +30,19 @@
       </div>
    </div>
 </section>
+
+<style>
+   .image-processing img {
+      max-width: 100%;
+      /* Make sure the image doesn't exceed the container's width */
+      max-height: 1200px !important;
+      /* Set the maximum height */
+      object-fit: contain;
+      /* Ensure the image fits within the given space while preserving its aspect ratio */
+      width: auto;
+      /* Adjust the width automatically to maintain the aspect ratio */
+      height: auto;
+      /* Adjust the height automatically to maintain the aspect ratio */
+      transition: 300ms;
+   }
+</style>

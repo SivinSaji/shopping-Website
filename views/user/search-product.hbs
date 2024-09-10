@@ -1,33 +1,50 @@
-
-
 <section style="padding-top: 10px;">
-    <h6> <b class="ml-2" style="color: #696969;"> Showing {{searchResultLength}} result for "{{searchValue}}"</b></h5>
-   <!--Product Display-->
-   <div class="container-fluid mt-3">
-      
-      <h5 class="limit-line-length">{{this.displayName}}</h5>
-      <div class="row">
-         {{#each products}}
-         <div class="col-6 col-md-2 pb-4">
-            <a href="/product-page/{{this._id}}" style="text-decoration:none; color:black;">
-            <div class="card align-items-center text-center">
-               <img class="mt-3" src="/product-images/{{this._id}}.jpg" style="height:6rem; width:3.6rem;">
-               <div class="card-body">
-                  <div style="height:2.7em; width:7em;">
-                     <h6 class="card-title product-title">{{this.Name}}</h6>
-                  </div>
-                  <h6 class="card-text text-success limit-line-length" style="max-width:7em;">{{this.Price}}</h6>
-               <!--  <p class="card-text">{{this.description}}</p> -->
-             </a>
-                
-                  <button class="btn btn-primary mt-2" onclick="addToCart('{{this._id}}')" style="width:7em;height:auto">Add to Cart</button>
-             
-               </div>
+   <h6> <b class="ml-2" style="color: #696969;"> Showing {{searchResultLength}} result for "{{searchValue}}"</b></h5>
+      <!--Product Display-->
+      <div class="container-fluid mt-3">
+
+         <h5 class="limit-line-length">{{this.displayName}}</h5>
+         <div class="row">
+            {{#each products}}
+            <div class="col-6 col-md-2 pb-4">
+               <a href="/product-page/{{this._id}}" style="text-decoration:none; color:black;">
+                  <div class="card align-items-center text-center">
+                     <div class="image-processing">
+                        <img class="mt-3" src="/product-images/{{this._id}}.jpg">
+                     </div>
+                     <div class="card-body">
+                        <div style="height:2.7em; width:7em;">
+                           <h6 class="card-title product-title">{{this.Name}}</h6>
+                        </div>
+                        <h6 class="card-text text-success limit-line-length" style="max-width:7em;">{{this.Price}}</h6>
+                        <!--  <p class="card-text">{{this.description}}</p> -->
+               </a>
+
+               <button class="btn btn-primary mt-2" onclick="addToCart('{{this._id}}')"
+                  style="width:7em;height:auto">Add to Cart</button>
+
             </div>
          </div>
-         {{/each}}
       </div>
-      
-   </div>
-    
+      {{/each}}
+      </div>
+
+      </div>
+
 </section>
+
+<style>
+   .image-processing img {
+      max-width: 100%;
+      /* Make sure the image doesn't exceed the container's width */
+      max-height: 100px;
+      /* Set the maximum height */
+      object-fit: contain;
+      /* Ensure the image fits within the given space while preserving its aspect ratio */
+      width: auto;
+      /* Adjust the width automatically to maintain the aspect ratio */
+      height: auto;
+      /* Adjust the height automatically to maintain the aspect ratio */
+      transition: 300ms;
+   }
+</style>
