@@ -132,7 +132,7 @@
             {{#each categories}}
             <li class="tab">
               <a href="/category-page/{{this._id}}" style="text-decoration:none; color:black;">
-                <div class="category-col align-items-center text-center mr-5 ml-5" style="display:inline-block;">
+                <div class="category-col align-items-center text-center mr-5 ml-5" >
                   <img src="/category-images/{{this._id}}.jpg" alt="{{this.name}}">
                   <h6 style="font-size: 14px; font-weight: bold; color: #212121;">{{this.name}}</h6>
                 </div>
@@ -338,14 +338,14 @@
   }
 
   .category-col {
-    padding: 10px 0px;
+    padding: 10px;
     cursor: pointer;
     color: rgb(85, 83, 83);
   }
 
   .category-col img {
-   max-width: 100%;    /* Make sure the image doesn't exceed the container's width */
-    max-height: 80px;   /* Set the maximum height */
+      max-width: 100%;    /* Make sure the image doesn't exceed the container's width */
+    max-height: 100px;   /* Set the maximum height */
     object-fit: contain; /* Ensure the image fits within the given space while preserving its aspect ratio */
     width: auto;        /* Adjust the width automatically to maintain the aspect ratio */
     height: auto;       /* Adjust the height automatically to maintain the aspect ratio */
